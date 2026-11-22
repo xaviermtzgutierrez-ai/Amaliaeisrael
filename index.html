@@ -1,0 +1,2472 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+  <meta name="description" content="Invitación a las Bodas de Plata y Enlace Sagrado Maya de Amalia & Israel — 23 de Enero, 2027 · Valladolid, Yucatán">
+  <meta name="theme-color" content="#0a1d17">
+  <title>K'aam Nikte' · Bodas de Plata · Amalia &amp; Israel</title>
+
+  <!-- Favicon SVG con glifo solar maya -->
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><circle cx='50' cy='50' r='48' fill='%230b221a' stroke='%23d4af37' stroke-width='4'/><path d='M50,15 L50,85 M15,50 L85,50 M25,25 L75,75 M25,75 L75,25' stroke='%23e6c875' stroke-width='2'/><circle cx='50' cy='50' r='18' fill='%23134333' stroke='%23ffd700' stroke-width='3'/><circle cx='50' cy='50' r='6' fill='%23ffd700'/></svg>">
+
+  <!-- Google Fonts: Cinzel Decorative + Cinzel + Cormorant Garamond + Plus Jakarta Sans -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Cinzel+Decorative:wght@700;900&family=Cinzel:wght@400;600;700;800;900&family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;0,700;1,400;1,600&family=Plus+Jakarta+Sans:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+
+  <style>
+  /* ================================================================
+     SISTEMA DE DISEÑO — BODA MAYA & BODAS DE PLATA (25 AÑOS)
+     Paleta Sagrada: Jade Imperial, Oro Metálico, Champaña y Obsidiana
+  ================================================================ */
+  :root {
+    /* Tonos Jade y Selva Sagrada */
+    --jade-obsidiana: #05130f;
+    --jade-profundo:  #0a1d17;
+    --jade-noche:     #0e261f;
+    --jade-medio:     #13382c;
+    --jade-esmeralda: #1a4d3d;
+    --jade-claro:     #256b54;
+    --jade-luz:       #388f72;
+
+    /* Tonos Oro Ceremonial & Grecas */
+    --oro-brillo:     #fff2b8;
+    --oro-sol:        #ffd768;
+    --oro-maya:       #dfb15b;
+    --oro-champana:   #c89f53;
+    --oro-antiguo:    #9e7732;
+    --oro-bronce:     #6d501d;
+
+    /* Textos & Neutros */
+    --marfil:         #fdfbf7;
+    --marfil-calido:  #f3eee3;
+    --arena:          #dfd7c5;
+    --dorado-texto:   #f6e4b8;
+
+    /* Gradientes Metálicos */
+    --grad-oro: linear-gradient(135deg, #fff3c4 0%, #e8be65 30%, #c49942 60%, #ffd978 100%);
+    --grad-oro-borde: linear-gradient(90deg, transparent, #c49942, #ffe694, #c49942, transparent);
+    --grad-jade-tarjeta: linear-gradient(165deg, rgba(16, 44, 36, 0.92) 0%, rgba(9, 25, 20, 0.96) 100%);
+    --grad-jade-card-inner: radial-gradient(circle at 50% 0%, rgba(30, 80, 64, 0.3) 0%, transparent 75%);
+
+    /* Tipografías */
+    --font-mayan: 'Cinzel Decorative', 'Cinzel', serif;
+    --font-heading: 'Cinzel', Georgia, serif;
+    --font-body: 'Cormorant Garamond', Georgia, serif;
+    --font-sans: 'Plus Jakarta Sans', system-ui, sans-serif;
+
+    /* Sombras y Filtros */
+    --shadow-oro: 0 0 25px rgba(223, 177, 91, 0.28);
+    --shadow-oro-intensa: 0 0 40px rgba(255, 215, 104, 0.45);
+    --shadow-tarjeta: 0 20px 45px rgba(0, 0, 0, 0.65), 0 0 1px 1px rgba(223, 177, 91, 0.3);
+
+    /* Radios */
+    --radius-sm: 8px;
+    --radius-md: 16px;
+    --radius-lg: 24px;
+    --radius-pill: 9999px;
+  }
+
+  /* ================================================================
+     RESET & BASE
+  ================================================================ */
+  *, *::before, *::after {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+  }
+
+  html {
+    scroll-behavior: smooth;
+    -webkit-text-size-adjust: 100%;
+    background-color: var(--jade-obsidiana);
+  }
+
+  body {
+    font-family: var(--font-body);
+    font-size: 19px;
+    line-height: 1.65;
+    color: var(--marfil-calido);
+    background-color: var(--jade-obsidiana);
+    min-height: 100vh;
+    overflow-x: hidden;
+    position: relative;
+    selection-background-color: var(--oro-maya);
+    selection-color: var(--jade-obsidiana);
+  }
+
+  /* Fondo decorativo fijo en el body */
+  body::before {
+    content: "";
+    position: fixed;
+    inset: 0;
+    background: 
+      radial-gradient(circle at 50% 10%, rgba(20, 60, 48, 0.45) 0%, transparent 60%),
+      radial-gradient(circle at 80% 80%, rgba(14, 40, 32, 0.6) 0%, transparent 60%),
+      radial-gradient(circle at 10% 90%, rgba(25, 75, 58, 0.35) 0%, transparent 50%);
+    pointer-events: none;
+    z-index: 0;
+  }
+
+  /* Canvas de partículas mágicas y copal */
+  #canvas-particles {
+    position: fixed;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    pointer-events: none;
+    z-index: 1;
+    opacity: 0.65;
+  }
+
+  /* ================================================================
+     CLASES DE EFECTO Y TIPOGRAFÍA
+  ================================================================ */
+  .gold-text {
+    background: var(--grad-oro);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    text-shadow: 0 0 18px rgba(223, 177, 91, 0.3);
+    display: inline-block;
+  }
+
+  .gold-text-glow {
+    background: linear-gradient(135deg, #fffceb 0%, #ffd875 40%, #dfb15b 70%, #fff0a8 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    filter: drop-shadow(0 0 12px rgba(255, 215, 104, 0.4));
+  }
+
+  /* ================================================================
+     MARCO DE GRECAS MAYAS DORADAS (ESTRUCTURAL EN TARJETAS)
+  ================================================================ */
+  .mayan-card {
+    position: relative;
+    background: var(--grad-jade-tarjeta);
+    border-radius: var(--radius-md);
+    padding: 42px 28px;
+    margin-bottom: 38px;
+    backdrop-filter: blur(20px);
+    -webkit-backdrop-filter: blur(20px);
+    box-shadow: var(--shadow-tarjeta);
+    overflow: hidden;
+    transition: transform 0.4s cubic-bezier(0.16, 1, 0.3, 1), box-shadow 0.4s ease;
+  }
+
+  .mayan-card:hover {
+    transform: translateY(-4px);
+    box-shadow: 0 26px 55px rgba(0, 0, 0, 0.75), 0 0 25px rgba(223, 177, 91, 0.35);
+  }
+
+  /* Luz interior cenital */
+  .mayan-card::before {
+    content: "";
+    position: absolute;
+    inset: 0;
+    background: var(--grad-jade-card-inner);
+    pointer-events: none;
+  }
+
+  /* Cinta superior e inferior de grecas mayas estilizadas */
+  .mayan-fret-top,
+  .mayan-fret-bottom {
+    position: absolute;
+    left: 20px;
+    right: 20px;
+    height: 10px;
+    background-repeat: repeat-x;
+    background-size: 24px 8px;
+    opacity: 0.85;
+    pointer-events: none;
+    z-index: 3;
+  }
+
+  .mayan-fret-top {
+    top: 10px;
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='24' height='8' viewBox='0 0 24 8'%3E%3Cpath d='M0,8 L0,2 L8,2 L8,6 L4,6 L4,4 L6,4 L6,5 L5,5 L5,8 L10,8 L10,0 L2,0 L2,8 Z M12,8 L12,2 L20,2 L20,6 L16,6 L16,4 L18,4 L18,5 L17,5 L17,8 L22,8 L22,0 L14,0 L14,8 Z' fill='%23dfb15b' fill-opacity='0.85'/%3E%3C/svg%3E");
+    border-bottom: 1px solid rgba(223, 177, 91, 0.35);
+  }
+
+  .mayan-fret-bottom {
+    bottom: 10px;
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='24' height='8' viewBox='0 0 24 8'%3E%3Cpath d='M0,0 L0,6 L8,6 L8,2 L4,2 L4,4 L6,4 L6,3 L5,3 L5,0 L10,0 L10,8 L2,8 L2,0 Z M12,0 L12,6 L20,6 L20,2 L16,2 L16,4 L18,4 L18,3 L17,3 L17,0 L22,0 L22,8 L14,8 L14,0 Z' fill='%23dfb15b' fill-opacity='0.85'/%3E%3C/svg%3E");
+    border-top: 1px solid rgba(223, 177, 91, 0.35);
+  }
+
+  /* Borde doble con esquinas ceremoniales mayas */
+  .mayan-card-border {
+    position: absolute;
+    inset: 7px;
+    border: 1px solid rgba(223, 177, 91, 0.35);
+    border-radius: calc(var(--radius-md) - 5px);
+    pointer-events: none;
+    z-index: 2;
+  }
+
+  /* Esquinas con glifos escalonados en oro */
+  .corner-glyph {
+    position: absolute;
+    width: 22px;
+    height: 22px;
+    pointer-events: none;
+    z-index: 4;
+  }
+  .corner-tl { top: 6px; left: 6px; border-top: 2.5px solid var(--oro-maya); border-left: 2.5px solid var(--oro-maya); }
+  .corner-tr { top: 6px; right: 6px; border-top: 2.5px solid var(--oro-maya); border-right: 2.5px solid var(--oro-maya); }
+  .corner-bl { bottom: 6px; left: 6px; border-bottom: 2.5px solid var(--oro-maya); border-left: 2.5px solid var(--oro-maya); }
+  .corner-br { bottom: 6px; right: 6px; border-bottom: 2.5px solid var(--oro-maya); border-right: 2.5px solid var(--oro-maya); }
+
+  .corner-glyph::after {
+    content: "";
+    position: absolute;
+    width: 8px;
+    height: 8px;
+    background: var(--oro-maya);
+    opacity: 0.85;
+  }
+  .corner-tl::after { top: 2px; left: 2px; }
+  .corner-tr::after { top: 2px; right: 2px; }
+  .corner-bl::after { bottom: 2px; left: 2px; }
+  .corner-br::after { bottom: 2px; right: 2px; }
+
+  /* ================================================================
+     PANTALLA 1: PORTADA & SOBRE CEREMONIAL
+  ================================================================ */
+  #screen-intro {
+    position: relative;
+    z-index: 10;
+    min-height: 100dvh;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    padding: 35px 20px;
+    text-align: center;
+    background-image: 
+      linear-gradient(180deg, rgba(5, 19, 15, 0.75) 0%, rgba(9, 29, 23, 0.88) 50%, rgba(5, 19, 15, 0.95) 100%),
+      url('fondo-maya.jpg');
+    background-size: cover;
+    background-position: center;
+    background-attachment: fixed;
+    transition: opacity 1s cubic-bezier(0.25, 0.8, 0.25, 1), transform 1s ease;
+  }
+
+  #screen-intro.hiding {
+    opacity: 0;
+    transform: scale(0.96) translateY(-25px);
+    pointer-events: none;
+  }
+
+  .intro-badge {
+    font-family: var(--font-heading);
+    font-size: 11px;
+    font-weight: 700;
+    letter-spacing: 5px;
+    text-transform: uppercase;
+    color: var(--oro-sol);
+    background: rgba(18, 56, 44, 0.75);
+    border: 1px solid rgba(223, 177, 91, 0.45);
+    padding: 6px 20px;
+    border-radius: var(--radius-pill);
+    box-shadow: 0 4px 15px rgba(0,0,0,0.4);
+    margin-bottom: 12px;
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+  }
+
+  .intro-family-box {
+    margin-bottom: 8px;
+  }
+
+  .intro-guest-label {
+    font-family: var(--font-sans);
+    font-size: 13px;
+    font-weight: 500;
+    letter-spacing: 3px;
+    text-transform: uppercase;
+    color: var(--arena);
+    opacity: 0.9;
+  }
+
+  .intro-guest-name {
+    font-family: var(--font-heading);
+    font-size: clamp(22px, 4.5vw, 32px);
+    font-weight: 700;
+    color: var(--oro-brillo);
+    letter-spacing: 1px;
+    margin-top: 2px;
+    text-shadow: 0 2px 10px rgba(0,0,0,0.7);
+  }
+
+  /* Nombres de los novios en portada */
+  .intro-couple-title {
+    font-family: var(--font-mayan);
+    font-size: clamp(34px, 7vw, 56px);
+    line-height: 1.15;
+    margin: 8px 0;
+  }
+
+  .intro-anniversary-tag {
+    font-family: var(--font-heading);
+    font-size: 14px;
+    letter-spacing: 4px;
+    color: var(--oro-maya);
+    text-transform: uppercase;
+    margin-bottom: 20px;
+  }
+
+  /* Divisor ceremonial */
+  .ornament-line {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 16px;
+    width: 100%;
+    max-width: 340px;
+    margin: 6px auto 18px;
+  }
+  .ornament-line::before,
+  .ornament-line::after {
+    content: "";
+    flex: 1;
+    height: 1px;
+    background: var(--grad-oro-borde);
+  }
+  .ornament-line span {
+    color: var(--oro-sol);
+    font-size: 18px;
+  }
+
+  /* ================================================================
+     EL SOBRE CEREMONIAL 3D CON EL SELLO SAGRADO (IMAGEN 1)
+  ================================================================ */
+  .envelope-container {
+    perspective: 1200px;
+    margin-top: 10px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .envelope-instruction {
+    font-family: var(--font-sans);
+    font-size: 13px;
+    font-weight: 600;
+    letter-spacing: 2.5px;
+    text-transform: uppercase;
+    color: var(--oro-sol);
+    margin-bottom: 16px;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    animation: pulseInstruction 2.4s ease-in-out infinite;
+  }
+
+  @keyframes pulseInstruction {
+    0%, 100% { opacity: 0.65; transform: translateY(0); }
+    50% { opacity: 1; transform: translateY(-4px); filter: drop-shadow(0 0 8px rgba(255, 215, 104, 0.6)); }
+  }
+
+  .envelope-3d {
+    width: clamp(290px, 86vw, 410px);
+    height: clamp(205px, 62vw, 280px);
+    position: relative;
+    cursor: pointer;
+    transform-style: preserve-3d;
+    filter: drop-shadow(0 25px 50px rgba(0, 0, 0, 0.85)) drop-shadow(0 0 20px rgba(223, 177, 91, 0.25));
+    transition: transform 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+  }
+
+  .envelope-3d:hover {
+    transform: translateY(-8px) scale(1.02);
+  }
+
+  /* Cuerpo del sobre: textura de papiro sagrado y jade */
+  .env-paper-body {
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(145deg, #184134 0%, #0d2820 60%, #081b15 100%);
+    border-radius: var(--radius-sm);
+    border: 1.5px solid rgba(223, 177, 91, 0.5);
+    overflow: hidden;
+    box-shadow: inset 0 0 40px rgba(0, 0, 0, 0.6);
+  }
+
+  .env-paper-body::before {
+    content: "";
+    position: absolute;
+    inset: 8px;
+    border: 1px dashed rgba(223, 177, 91, 0.4);
+    border-radius: 4px;
+    pointer-events: none;
+  }
+
+  /* Detalle de grecas en el sobre */
+  .env-mayan-decor {
+    position: absolute;
+    bottom: 14px;
+    left: 0;
+    right: 0;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 4px;
+    pointer-events: none;
+    z-index: 3;
+  }
+
+  .env-mayan-text {
+    font-family: var(--font-heading);
+    font-size: 11px;
+    letter-spacing: 3.5px;
+    text-transform: uppercase;
+    color: var(--oro-maya);
+    opacity: 0.85;
+  }
+
+  /* Solapa superior triangular */
+  .env-top-flap {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    transform-origin: top center;
+    transition: transform 0.9s cubic-bezier(0.4, 0, 0.2, 1);
+    z-index: 5;
+    pointer-events: none;
+  }
+
+  .env-top-flap svg {
+    width: 100%;
+    height: 55%;
+    display: block;
+    filter: drop-shadow(0 6px 8px rgba(0, 0, 0, 0.6));
+  }
+
+  .envelope-3d.opened .env-top-flap {
+    transform: rotateX(170deg);
+  }
+
+  /* Solapas laterales e inferior SVG fijas */
+  .env-bottom-folds {
+    position: absolute;
+    inset: 0;
+    pointer-events: none;
+    z-index: 2;
+  }
+
+  /* SELLO DEL SOBRE (IMAGEN 1): Medallón circular de jade y oro */
+  .env-seal-wrapper {
+    position: absolute;
+    top: 48%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 82px;
+    height: 82px;
+    z-index: 7;
+    cursor: pointer;
+    transition: transform 0.6s cubic-bezier(0.16, 1, 0.3, 1), opacity 0.5s ease;
+  }
+
+  .env-seal-img {
+    width: 100%;
+    height: 100%;
+    border-radius: 50%;
+    object-fit: cover;
+    box-shadow: 
+      0 0 0 3px rgba(223, 177, 91, 0.6),
+      0 8px 25px rgba(0, 0, 0, 0.7),
+      0 0 25px rgba(223, 177, 91, 0.65);
+    animation: sealGlowPulse 3s ease-in-out infinite;
+    transition: transform 0.3s ease;
+  }
+
+  .envelope-3d:hover .env-seal-img {
+    transform: scale(1.08) rotate(5deg);
+  }
+
+  @keyframes sealGlowPulse {
+    0%, 100% {
+      box-shadow: 0 0 0 3px rgba(223, 177, 91, 0.6), 0 8px 25px rgba(0, 0, 0, 0.7), 0 0 20px rgba(223, 177, 91, 0.4);
+    }
+    50% {
+      box-shadow: 0 0 0 4px rgba(255, 230, 148, 0.8), 0 10px 30px rgba(0, 0, 0, 0.8), 0 0 35px rgba(255, 215, 104, 0.85);
+    }
+  }
+
+  /* Animación de ruptura del sello */
+  .env-seal-wrapper.breaking {
+    transform: translate(-50%, -50%) scale(1.6);
+    opacity: 0;
+    filter: brightness(2) blur(4px);
+  }
+
+  /* ================================================================
+     PANTALLA 2: CONTENIDO PRINCIPAL DE LA INVITACIÓN
+  ================================================================ */
+  #screen-main {
+    display: none;
+    opacity: 0;
+    position: relative;
+    z-index: 5;
+    transition: opacity 1.2s ease;
+    padding-bottom: 70px;
+  }
+
+  #screen-main.visible {
+    display: block;
+    opacity: 1;
+  }
+
+  .main-container {
+    max-width: 680px;
+    margin: 0 auto;
+    padding: 0 18px;
+  }
+
+  /* ================================================================
+     HERO: PRESENTACIÓN DE LA SEGUNDA HOJA (IMAGEN 2)
+  ================================================================ */
+  .hero-presentation-card {
+    text-align: center;
+    margin-top: 30px;
+    padding-top: 30px;
+  }
+
+  .hero-image-frame {
+    position: relative;
+    border-radius: var(--radius-md);
+    padding: 8px;
+    background: linear-gradient(135deg, #d4af37 0%, #4a3410 40%, #ffd700 70%, #875c1a 100%);
+    box-shadow: 0 20px 45px rgba(0, 0, 0, 0.8), 0 0 30px rgba(223, 177, 91, 0.35);
+    margin: 0 auto 28px;
+    max-width: 440px;
+    overflow: hidden;
+  }
+
+  .hero-poster-img {
+    width: 100%;
+    height: auto;
+    display: block;
+    border-radius: calc(var(--radius-md) - 6px);
+    filter: contrast(1.05) brightness(1.02);
+    transition: transform 0.6s cubic-bezier(0.16, 1, 0.3, 1);
+  }
+
+  .hero-poster-img:hover {
+    transform: scale(1.03);
+  }
+
+  /* Brillo de luz que pasa por el póster */
+  .hero-image-frame::after {
+    content: "";
+    position: absolute;
+    top: -50%;
+    left: -60%;
+    width: 20%;
+    height: 200%;
+    background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.35), transparent);
+    transform: rotate(30deg);
+    pointer-events: none;
+    animation: shineSweep 6s infinite ease-in-out;
+  }
+
+  @keyframes shineSweep {
+    0%, 75% { left: -60%; }
+    100% { left: 160%; }
+  }
+
+  .hero-tag {
+    font-family: var(--font-heading);
+    font-size: 13px;
+    letter-spacing: 4px;
+    text-transform: uppercase;
+    color: var(--oro-sol);
+    margin-bottom: 6px;
+    display: block;
+  }
+
+  .hero-main-title {
+    font-family: var(--font-mayan);
+    font-size: clamp(36px, 8vw, 64px);
+    font-weight: 700;
+    line-height: 1.1;
+    margin-bottom: 12px;
+  }
+
+  .hero-date-box {
+    display: inline-block;
+    padding: 10px 28px;
+    background: rgba(14, 40, 32, 0.85);
+    border: 1px solid var(--oro-maya);
+    border-radius: var(--radius-pill);
+    font-family: var(--font-heading);
+    font-size: 16px;
+    font-weight: 600;
+    letter-spacing: 3px;
+    color: var(--marfil-calido);
+    margin: 12px 0 6px;
+    box-shadow: 0 6px 20px rgba(0, 0, 0, 0.5);
+  }
+
+  .hero-venue-sub {
+    font-family: var(--font-sans);
+    font-size: 15px;
+    color: var(--arena);
+    letter-spacing: 1.5px;
+    opacity: 0.85;
+  }
+
+  /* ================================================================
+     SECCIÓN 1: MENSAJE DE LOS NOVIOS & SELLO DE LA FAMILIA (IMAGEN 5)
+  ================================================================ */
+  .message-card {
+    text-align: center;
+  }
+
+  .family-seal-box {
+    width: 110px;
+    height: 110px;
+    margin: 0 auto 20px;
+    position: relative;
+    filter: drop-shadow(0 8px 20px rgba(0, 0, 0, 0.7)) drop-shadow(0 0 15px rgba(223, 177, 91, 0.4));
+  }
+
+  .family-seal-img {
+    width: 100%;
+    height: 100%;
+    border-radius: 50%;
+    object-fit: cover;
+    border: 2px solid var(--oro-maya);
+  }
+
+  .section-pretitle {
+    font-family: var(--font-heading);
+    font-size: 12px;
+    letter-spacing: 4px;
+    text-transform: uppercase;
+    color: var(--oro-sol);
+    opacity: 0.9;
+    display: block;
+    margin-bottom: 6px;
+  }
+
+  .section-title {
+    font-family: var(--font-heading);
+    font-size: clamp(26px, 5.5vw, 36px);
+    font-weight: 700;
+    color: var(--oro-brillo);
+    line-height: 1.25;
+    margin-bottom: 18px;
+  }
+
+  .silver-anniversary-lead {
+    font-family: var(--font-heading);
+    font-size: 18px;
+    font-weight: 600;
+    letter-spacing: 1px;
+    color: var(--oro-sol);
+    margin-bottom: 22px;
+  }
+
+  .message-paragraph {
+    font-family: var(--font-body);
+    font-size: 21px;
+    font-style: italic;
+    font-weight: 400;
+    line-height: 1.85;
+    color: var(--marfil-calido);
+    margin-bottom: 20px;
+    text-align: justify;
+    text-justify: inter-word;
+    text-align-last: center;
+  }
+
+  .signature-text {
+    font-family: var(--font-mayan);
+    font-size: 28px;
+    color: var(--oro-sol);
+    margin-top: 18px;
+    display: block;
+    letter-spacing: 1px;
+  }
+
+  .mayan-quote-box {
+    margin-top: 26px;
+    padding-top: 20px;
+    border-top: 1px solid rgba(223, 177, 91, 0.3);
+    font-family: var(--font-heading);
+    font-size: 14px;
+    letter-spacing: 3px;
+    color: var(--oro-maya);
+  }
+
+  .mayan-quote-sub {
+    display: block;
+    font-family: var(--font-sans);
+    font-size: 12px;
+    letter-spacing: 1.5px;
+    color: var(--arena);
+    opacity: 0.75;
+    margin-top: 4px;
+  }
+
+  /* ================================================================
+     SECCIÓN 2: CUENTA REGRESIVA SAGRADA
+  ================================================================ */
+  .countdown-grid {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 12px;
+    margin-top: 24px;
+  }
+
+  .countdown-box {
+    background: rgba(9, 25, 20, 0.85);
+    border: 1px solid rgba(223, 177, 91, 0.4);
+    border-radius: var(--radius-sm);
+    padding: 16px 6px;
+    text-align: center;
+    position: relative;
+    box-shadow: inset 0 0 15px rgba(0, 0, 0, 0.5);
+  }
+
+  .countdown-number {
+    display: block;
+    font-family: var(--font-heading);
+    font-size: clamp(28px, 6vw, 42px);
+    font-weight: 700;
+    color: var(--oro-sol);
+    line-height: 1;
+    margin-bottom: 6px;
+    text-shadow: 0 0 12px rgba(255, 215, 104, 0.4);
+  }
+
+  .countdown-label {
+    display: block;
+    font-family: var(--font-sans);
+    font-size: 11px;
+    font-weight: 600;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    color: var(--arena);
+    opacity: 0.8;
+  }
+
+  /* ================================================================
+     SECCIÓN 3: RITO ANCESTRAL — CUATRO RUMBOS & ELEMENTOS
+  ================================================================ */
+  .elements-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 14px;
+    margin: 22px 0 16px;
+  }
+
+  .element-card {
+    background: rgba(10, 29, 23, 0.7);
+    border: 1px solid rgba(223, 177, 91, 0.25);
+    border-radius: var(--radius-sm);
+    padding: 16px;
+    transition: transform 0.3s ease, border-color 0.3s ease;
+  }
+
+  .element-card:hover {
+    transform: translateY(-2px);
+    border-color: var(--oro-maya);
+  }
+
+  .element-header {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    font-family: var(--font-heading);
+    font-size: 14px;
+    font-weight: 700;
+    color: var(--oro-sol);
+    letter-spacing: 1px;
+    margin-bottom: 6px;
+  }
+
+  .element-icon {
+    font-size: 20px;
+  }
+
+  .element-text {
+    font-family: var(--font-sans);
+    font-size: 13.5px;
+    line-height: 1.5;
+    color: var(--arena);
+    opacity: 0.85;
+  }
+
+  /* ================================================================
+     SECCIÓN 4: ITINERARIO DEL DÍA
+  ================================================================ */
+  .itinerary-list {
+    position: relative;
+    padding-left: 30px;
+    margin-top: 24px;
+  }
+
+  .itinerary-list::before {
+    content: "";
+    position: absolute;
+    top: 10px;
+    bottom: 10px;
+    left: 8px;
+    width: 2px;
+    background: linear-gradient(180deg, var(--oro-sol), var(--oro-antiguo), var(--oro-sol));
+  }
+
+  .itinerary-item {
+    position: relative;
+    margin-bottom: 24px;
+  }
+
+  .itinerary-item:last-child {
+    margin-bottom: 0;
+  }
+
+  .itinerary-dot {
+    position: absolute;
+    left: -30px;
+    top: 5px;
+    width: 18px;
+    height: 18px;
+    border-radius: 50%;
+    background: var(--jade-profundo);
+    border: 3px solid var(--oro-sol);
+    box-shadow: 0 0 10px var(--oro-maya);
+  }
+
+  .itinerary-time {
+    font-family: var(--font-heading);
+    font-size: 13px;
+    font-weight: 700;
+    letter-spacing: 2px;
+    color: var(--oro-sol);
+  }
+
+  .itinerary-title {
+    font-family: var(--font-heading);
+    font-size: 18px;
+    font-weight: 600;
+    color: var(--marfil-calido);
+    margin: 2px 0 4px;
+  }
+
+  .itinerary-desc {
+    font-family: var(--font-sans);
+    font-size: 14px;
+    color: var(--arena);
+    opacity: 0.8;
+  }
+
+  /* ================================================================
+     SECCIÓN 5: UBICACIONES & MAPAS
+  ================================================================ */
+  .venue-block {
+    text-align: center;
+    padding: 16px 0;
+    border-bottom: 1px solid rgba(223, 177, 91, 0.2);
+  }
+
+  .venue-block:last-child {
+    border-bottom: none;
+    padding-bottom: 0;
+  }
+
+  .venue-pill {
+    display: inline-block;
+    font-family: var(--font-sans);
+    font-size: 11px;
+    font-weight: 700;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    padding: 5px 16px;
+    border-radius: var(--radius-pill);
+    background: var(--oro-maya);
+    color: var(--jade-obsidiana);
+    margin-bottom: 10px;
+  }
+
+  .venue-pill.alt {
+    background: rgba(37, 107, 84, 0.9);
+    color: var(--oro-brillo);
+    border: 1px solid var(--oro-maya);
+  }
+
+  .venue-name {
+    font-family: var(--font-heading);
+    font-size: 24px;
+    font-weight: 700;
+    color: var(--marfil);
+    margin-bottom: 6px;
+  }
+
+  .venue-address {
+    font-family: var(--font-sans);
+    font-size: 15px;
+    color: var(--arena);
+    line-height: 1.6;
+    margin-bottom: 18px;
+  }
+
+  .venue-actions {
+    display: flex;
+    gap: 12px;
+    justify-content: center;
+    flex-wrap: wrap;
+  }
+
+  /* ================================================================
+     SECCIÓN 6: CÓDIGO DE VESTIMENTA (EXACTO SOLICITADO)
+  ================================================================ */
+  .dress-code-box {
+    margin-top: 18px;
+  }
+
+  .dress-rule-alert {
+    background: rgba(160, 40, 30, 0.18);
+    border: 1px solid rgba(220, 100, 80, 0.45);
+    border-radius: var(--radius-sm);
+    padding: 14px 18px;
+    text-align: center;
+    margin-bottom: 24px;
+  }
+
+  .dress-rule-alert strong {
+    font-family: var(--font-heading);
+    font-size: 13px;
+    letter-spacing: 1.5px;
+    color: #ffb4a2;
+    text-transform: uppercase;
+    display: block;
+    margin-bottom: 4px;
+  }
+
+  .dress-rule-alert p {
+    font-family: var(--font-sans);
+    font-size: 14px;
+    color: #ffd8cc;
+  }
+
+  .dress-columns {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 16px;
+  }
+
+  .dress-card-col {
+    background: rgba(10, 28, 22, 0.85);
+    border: 1px solid rgba(223, 177, 91, 0.35);
+    border-radius: var(--radius-sm);
+    padding: 20px 16px;
+    text-align: center;
+  }
+
+  .dress-gender-icon {
+    font-size: 32px;
+    margin-bottom: 8px;
+    display: inline-block;
+  }
+
+  .dress-gender-title {
+    font-family: var(--font-heading);
+    font-size: 18px;
+    font-weight: 700;
+    color: var(--oro-sol);
+    letter-spacing: 1.5px;
+    margin-bottom: 12px;
+  }
+
+  .dress-rule-highlight {
+    font-family: var(--font-sans);
+    font-size: 15px;
+    font-weight: 600;
+    color: var(--marfil);
+    line-height: 1.5;
+    margin-bottom: 12px;
+  }
+
+  .dress-rule-details {
+    font-family: var(--font-sans);
+    font-size: 13px;
+    color: var(--arena);
+    line-height: 1.6;
+    opacity: 0.85;
+  }
+
+  /* Muestra de paleta permitida */
+  .swatch-group {
+    display: flex;
+    justify-content: center;
+    gap: 6px;
+    margin-top: 14px;
+  }
+
+  .swatch {
+    width: 20px;
+    height: 20px;
+    border-radius: 50%;
+    border: 1px solid rgba(223, 177, 91, 0.5);
+  }
+
+  /* ================================================================
+     SECCIÓN 7: MESA DE REGALOS (BBVA + COPIAR CLABE)
+  ================================================================ */
+  .gifts-card {
+    text-align: center;
+  }
+
+  .gifts-message {
+    font-family: var(--font-body);
+    font-size: 20px;
+    font-style: italic;
+    color: var(--marfil-calido);
+    line-height: 1.8;
+    margin-bottom: 24px;
+  }
+
+  /* Tarjeta Bancaria Ceremonial Maya */
+  .bank-card {
+    background: linear-gradient(135deg, #11382b 0%, #0a2119 50%, #061711 100%);
+    border: 1.5px solid var(--oro-maya);
+    border-radius: var(--radius-md);
+    padding: 26px 20px;
+    margin: 20px auto 16px;
+    max-width: 460px;
+    box-shadow: 0 15px 35px rgba(0,0,0,0.6), inset 0 0 25px rgba(223, 177, 91, 0.15);
+    position: relative;
+    overflow: hidden;
+  }
+
+  .bank-card::after {
+    content: "BBVA";
+    position: absolute;
+    right: 20px;
+    top: 18px;
+    font-family: var(--font-heading);
+    font-size: 24px;
+    font-weight: 900;
+    letter-spacing: 2px;
+    color: var(--oro-sol);
+    opacity: 0.9;
+  }
+
+  .bank-holder-label {
+    font-family: var(--font-sans);
+    font-size: 11px;
+    font-weight: 600;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    color: var(--arena);
+    opacity: 0.75;
+    text-align: left;
+  }
+
+  .bank-holder-name {
+    font-family: var(--font-heading);
+    font-size: 18px;
+    font-weight: 700;
+    color: var(--marfil);
+    letter-spacing: 1px;
+    text-align: left;
+    margin-bottom: 16px;
+  }
+
+  .bank-row {
+    background: rgba(0, 0, 0, 0.35);
+    border: 1px solid rgba(223, 177, 91, 0.25);
+    border-radius: var(--radius-sm);
+    padding: 12px 14px;
+    margin-bottom: 12px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 10px;
+    text-align: left;
+  }
+
+  .bank-row:last-child {
+    margin-bottom: 0;
+  }
+
+  .bank-field-info {
+    flex: 1;
+  }
+
+  .bank-field-label {
+    display: block;
+    font-family: var(--font-sans);
+    font-size: 10px;
+    font-weight: 600;
+    letter-spacing: 1.5px;
+    text-transform: uppercase;
+    color: var(--oro-maya);
+  }
+
+  .bank-field-val {
+    font-family: 'Courier New', Courier, monospace;
+    font-size: clamp(14px, 3.8vw, 17px);
+    font-weight: 700;
+    color: var(--marfil);
+    letter-spacing: 1.2px;
+  }
+
+  .btn-copy {
+    background: rgba(223, 177, 91, 0.2);
+    border: 1px solid var(--oro-maya);
+    color: var(--oro-sol);
+    border-radius: var(--radius-sm);
+    padding: 8px 12px;
+    font-family: var(--font-sans);
+    font-size: 11px;
+    font-weight: 600;
+    letter-spacing: 1px;
+    text-transform: uppercase;
+    cursor: pointer;
+    transition: all 0.25s ease;
+    display: inline-flex;
+    align-items: center;
+    gap: 5px;
+    flex-shrink: 0;
+  }
+
+  .btn-copy:hover {
+    background: var(--oro-maya);
+    color: var(--jade-obsidiana);
+    transform: scale(1.04);
+  }
+
+  .envelope-rain-note {
+    font-family: var(--font-sans);
+    font-size: 13.5px;
+    color: var(--arena);
+    margin-top: 14px;
+    opacity: 0.85;
+  }
+
+  /* ================================================================
+     SECCIÓN 8: CONFIRMACIÓN DE ASISTENCIA (RSVP)
+  ================================================================ */
+  .rsvp-deadline-badge {
+    display: inline-block;
+    background: rgba(223, 177, 91, 0.15);
+    border: 1px solid var(--oro-maya);
+    color: var(--oro-sol);
+    font-family: var(--font-heading);
+    font-size: 14px;
+    font-weight: 700;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    padding: 8px 24px;
+    border-radius: var(--radius-pill);
+    margin-bottom: 22px;
+  }
+
+  .rsvp-form-container {
+    max-width: 480px;
+    margin: 0 auto;
+    text-align: left;
+  }
+
+  .form-group {
+    margin-bottom: 18px;
+  }
+
+  .form-label {
+    display: block;
+    font-family: var(--font-sans);
+    font-size: 12px;
+    font-weight: 600;
+    letter-spacing: 1.5px;
+    text-transform: uppercase;
+    color: var(--oro-maya);
+    margin-bottom: 6px;
+  }
+
+  .form-input, .form-select, .form-textarea {
+    width: 100%;
+    background: rgba(8, 24, 19, 0.85);
+    border: 1px solid rgba(223, 177, 91, 0.4);
+    border-radius: var(--radius-sm);
+    padding: 12px 14px;
+    color: var(--marfil);
+    font-family: var(--font-sans);
+    font-size: 15px;
+    outline: none;
+    transition: border-color 0.3s ease, box-shadow 0.3s ease;
+  }
+
+  .form-input:focus, .form-select:focus, .form-textarea:focus {
+    border-color: var(--oro-sol);
+    box-shadow: 0 0 15px rgba(255, 215, 104, 0.3);
+  }
+
+  /* Botones principales de acción */
+  .btn {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+    font-family: var(--font-heading);
+    font-size: 13px;
+    font-weight: 700;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    text-decoration: none;
+    padding: 15px 32px;
+    border-radius: var(--radius-pill);
+    border: none;
+    cursor: pointer;
+    transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+    position: relative;
+    overflow: hidden;
+  }
+
+  .btn-gold {
+    background: var(--grad-oro);
+    color: var(--jade-obsidiana);
+    box-shadow: 0 6px 25px rgba(223, 177, 91, 0.45);
+  }
+
+  .btn-gold:hover {
+    transform: translateY(-3px) scale(1.02);
+    box-shadow: 0 10px 35px rgba(255, 215, 104, 0.65);
+  }
+
+  .btn-outline-gold {
+    background: transparent;
+    border: 1px solid var(--oro-maya);
+    color: var(--oro-sol);
+  }
+
+  .btn-outline-gold:hover {
+    background: rgba(223, 177, 91, 0.15);
+    border-color: var(--oro-sol);
+    transform: translateY(-2px);
+  }
+
+  .btn-full {
+    width: 100%;
+  }
+
+  .btn svg {
+    width: 18px;
+    height: 18px;
+    flex-shrink: 0;
+  }
+
+  /* ================================================================
+     SECCIÓN 9: CIERRE, DESPEDIDA & EMBLEMA SAGRADO (IMAGEN 3)
+  ================================================================ */
+  .closing-card {
+    text-align: center;
+  }
+
+  .ai-emblem-box {
+    width: 130px;
+    height: 130px;
+    margin: 0 auto 20px;
+    border-radius: 50%;
+    overflow: hidden;
+    border: 2px solid var(--oro-maya);
+    box-shadow: 0 0 30px rgba(223, 177, 91, 0.45);
+  }
+
+  .ai-emblem-img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+  }
+
+  .closing-verse {
+    font-family: var(--font-body);
+    font-size: 22px;
+    font-style: italic;
+    color: var(--marfil-calido);
+    line-height: 1.8;
+    margin-bottom: 22px;
+  }
+
+  .closing-couple-names {
+    font-family: var(--font-mayan);
+    font-size: clamp(28px, 6vw, 44px);
+    color: var(--oro-sol);
+    margin-bottom: 8px;
+  }
+
+  .closing-city {
+    font-family: var(--font-heading);
+    font-size: 13px;
+    letter-spacing: 4px;
+    text-transform: uppercase;
+    color: var(--arena);
+    opacity: 0.8;
+  }
+
+  /* ================================================================
+     FOOTER / PIE DE PÁGINA (SOLICITUD EXACTA DEL USUARIO)
+  ================================================================ */
+  .site-footer {
+    text-align: center;
+    padding: 30px 20px 20px;
+    margin-top: 20px;
+  }
+
+  .credit-text {
+    font-family: var(--font-sans);
+    font-size: 11px;
+    letter-spacing: 1px;
+    color: rgba(223, 177, 91, 0.65);
+    line-height: 1.6;
+  }
+
+  .credit-text a {
+    color: rgba(223, 177, 91, 0.85);
+    text-decoration: none;
+    transition: color 0.2s ease;
+  }
+
+  .credit-text a:hover {
+    color: var(--oro-brillo);
+    text-decoration: underline;
+  }
+
+  /* ================================================================
+     REPRODUCTOR DE MÚSICA FLOTANTE (AUDIO ALEATORIO EN LOOP)
+  ================================================================ */
+  #btn-music-toggle {
+    position: fixed;
+    bottom: 24px;
+    right: 20px;
+    height: 52px;
+    border-radius: var(--radius-pill);
+    background: rgba(10, 29, 23, 0.92);
+    border: 1.5px solid var(--oro-maya);
+    color: var(--oro-sol);
+    display: flex;
+    align-items: center;
+    padding: 0 16px 0 14px;
+    gap: 10px;
+    cursor: pointer;
+    z-index: 1000;
+    box-shadow: 0 8px 30px rgba(0, 0, 0, 0.6), 0 0 20px rgba(223, 177, 91, 0.3);
+    backdrop-filter: blur(14px);
+    -webkit-backdrop-filter: blur(14px);
+    transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+  }
+
+  #btn-music-toggle:hover {
+    transform: scale(1.05);
+    border-color: var(--oro-brillo);
+    box-shadow: 0 10px 35px rgba(0, 0, 0, 0.7), 0 0 30px rgba(255, 215, 104, 0.5);
+  }
+
+  .eq-bars {
+    display: flex;
+    align-items: flex-end;
+    gap: 3px;
+    height: 20px;
+  }
+
+  .eq-bar {
+    width: 3.5px;
+    background: var(--oro-sol);
+    border-radius: 2px;
+    height: 6px;
+    transition: height 0.2s ease;
+  }
+
+  #btn-music-toggle.playing .eq-bar:nth-child(1) { animation: eqAnim 1.1s ease-in-out infinite; }
+  #btn-music-toggle.playing .eq-bar:nth-child(2) { animation: eqAnim 0.8s ease-in-out infinite 0.2s; }
+  #btn-music-toggle.playing .eq-bar:nth-child(3) { animation: eqAnim 1.3s ease-in-out infinite 0.4s; }
+  #btn-music-toggle.playing .eq-bar:nth-child(4) { animation: eqAnim 0.9s ease-in-out infinite 0.1s; }
+
+  @keyframes eqAnim {
+    0%, 100% { height: 5px; }
+    50% { height: 20px; }
+  }
+
+  .music-label {
+    font-family: var(--font-sans);
+    font-size: 11.5px;
+    font-weight: 700;
+    letter-spacing: 1.5px;
+    text-transform: uppercase;
+  }
+
+  /* ================================================================
+     TOAST DE NOTIFICACIÓN
+  ================================================================ */
+  #toast-notification {
+    position: fixed;
+    bottom: 90px;
+    left: 50%;
+    transform: translateX(-50%) translateY(40px);
+    background: rgba(14, 42, 34, 0.96);
+    border: 1px solid var(--oro-maya);
+    color: var(--oro-brillo);
+    font-family: var(--font-sans);
+    font-size: 14px;
+    font-weight: 600;
+    padding: 12px 26px;
+    border-radius: var(--radius-pill);
+    box-shadow: 0 10px 30px rgba(0,0,0,0.8), 0 0 20px rgba(223, 177, 91, 0.4);
+    opacity: 0;
+    pointer-events: none;
+    z-index: 2000;
+    transition: all 0.35s cubic-bezier(0.16, 1, 0.3, 1);
+    display: flex;
+    align-items: center;
+    gap: 8px;
+  }
+
+  #toast-notification.show {
+    opacity: 1;
+    transform: translateX(-50%) translateY(0);
+  }
+
+  /* ================================================================
+     RESPONSIVE
+  ================================================================ */
+  @media (max-width: 520px) {
+    .mayan-card { padding: 34px 18px; }
+    .countdown-grid { gap: 8px; }
+    .countdown-box { padding: 12px 4px; }
+    .elements-grid { grid-template-columns: 1fr; }
+    .dress-columns { grid-template-columns: 1fr; }
+    .bank-row { flex-direction: column; align-items: flex-start; gap: 8px; }
+    .btn-copy { align-self: flex-end; }
+  }
+  </style>
+</head>
+
+<body>
+  <!-- Elemento de audio con fallback para pistas ceremoniales -->
+  <audio id="audio-ceremonial" preload="auto"></audio>
+
+  <!-- Canvas para partículas mágicas de jade y chispas de oro -->
+  <canvas id="canvas-particles" aria-hidden="true"></canvas>
+
+  <!-- Botón flotante de música -->
+  <button id="btn-music-toggle" aria-label="Música Ceremonial Maya" title="Música ceremonial maya">
+    <div class="eq-bars" aria-hidden="true">
+      <div class="eq-bar"></div>
+      <div class="eq-bar"></div>
+      <div class="eq-bar"></div>
+      <div class="eq-bar"></div>
+    </div>
+    <span class="music-label" id="music-btn-text">Música</span>
+  </button>
+
+  <!-- Toast para alertas de copiado -->
+  <div id="toast-notification" role="status" aria-live="polite">
+    <span>✦</span> <span id="toast-text">Copiado al portapapeles</span>
+  </div>
+
+  <!-- ===========================================================
+       PANTALLA 1: PORTADA & SOBRE CEREMONIAL
+       Fondo: Imagen 4 (fondo-maya.jpg)
+       Sello del sobre: Imagen 1 (sello-sobre.jpg)
+  =========================================================== -->
+  <section id="screen-intro" aria-label="Portada y Sobre Ceremonial">
+
+    <div class="intro-badge">
+      <span>✦</span> K'aam Nikte' · Rito Ancestral <span>✦</span>
+    </div>
+
+    <!-- Nombres de los novios -->
+    <h1 class="intro-couple-title gold-text-glow">
+      Amalia &amp; Israel
+    </h1>
+
+    <div class="intro-anniversary-tag">
+      Nuestras Bodas de Plata · 25 Años
+    </div>
+
+    <div class="ornament-line">
+      <span>✦</span>
+    </div>
+
+    <!-- Sobre ceremonial 3D -->
+    <div class="envelope-container">
+      <div class="envelope-instruction">
+        <span>👇</span> Toca el sello sagrado para abrir
+      </div>
+
+      <div class="envelope-3d" id="envelope-ceremonial" role="button" tabindex="0" aria-label="Abrir invitación ceremonial">
+        <!-- Cuerpo del sobre -->
+        <div class="env-paper-body"></div>
+
+        <!-- Solapa superior triangular con perspectiva 3D -->
+        <div class="env-top-flap" id="env-flap">
+          <svg viewBox="0 0 400 220" preserveAspectRatio="none">
+            <defs>
+              <linearGradient id="flapGrad" x1="0%" y1="0%" x2="0%" y2="100%">
+                <stop offset="0%" stop-color="#1c4e3e"/>
+                <stop offset="100%" stop-color="#0f2b22"/>
+              </linearGradient>
+            </defs>
+            <polygon points="0,0 400,0 200,210" fill="url(#flapGrad)" stroke="#dfb15b" stroke-width="1.5"/>
+          </svg>
+        </div>
+
+        <!-- Pliegues interiores decorativos -->
+        <div class="env-bottom-folds">
+          <svg viewBox="0 0 400 280" style="position:absolute; inset:0; width:100%; height:100%;">
+            <polygon points="0,280 200,120 400,280" fill="#0c261e" fill-opacity="0.6"/>
+            <polygon points="0,0 160,150 0,280" fill="#0e2f25" fill-opacity="0.4"/>
+            <polygon points="400,0 240,150 400,280" fill="#0e2f25" fill-opacity="0.4"/>
+          </svg>
+        </div>
+
+        <!-- Texto dorado en el sobre -->
+        <div class="env-mayan-decor">
+          <span class="env-mayan-text">Valladolid · Yucatán · 2027</span>
+        </div>
+
+        <!-- SELLO DEL SOBRE: Imagen 1 (sello-sobre.jpg) -->
+        <div class="env-seal-wrapper" id="envelope-seal">
+          <img src="sello-sobre.jpg" alt="Sello Ceremonial Maya" class="env-seal-img">
+        </div>
+      </div>
+    </div>
+
+  </section>
+
+
+  <!-- ===========================================================
+       PANTALLA 2: CONTENIDO PRINCIPAL DE LA INVITACIÓN
+       Presentación Hero: Imagen 2 (presentacion-hero.jpg)
+       Sello de la Familia: Imagen 5 (sello-familia.jpg)
+       Emblema Sagrado: Imagen 3 (emblema-ai.jpg)
+  =========================================================== -->
+  <main id="screen-main" aria-label="Invitación Ceremonial Completa">
+    <div class="main-container">
+
+      <!-- HERO DE PRESENTACIÓN (IMAGEN 2) -->
+      <header class="hero-presentation-card">
+        
+        <!-- Cartel / Tarjeta de presentación con marco dorado de grecas (Imagen 2) -->
+        <div class="hero-image-frame">
+          <img src="presentacion-hero.jpg" alt="Boda Sagrada Maya — Amalia &amp; Israel — Hacienda Valladolid" class="hero-poster-img">
+        </div>
+
+        <span class="hero-tag">Enlace Sagrado Maya · K'aam Nikte'</span>
+        
+        <h1 class="hero-main-title gold-text-glow">
+          Amalia &amp; Israel
+        </h1>
+
+        <div class="ornament-line">
+          <span>✦</span>
+        </div>
+
+        <div class="hero-date-box">
+          23 DE ENERO DE 2027 · 16:30 HRS
+        </div>
+        
+        <p class="hero-venue-sub">
+          Hotel Hacienda Valladolid · Pueblo Mágico · Yucatán, México
+        </p>
+      </header>
+
+
+      <!-- 1. MENSAJE DE LOS NOVIOS (BODAS DE PLATA - 25 AÑOS) -->
+      <article class="mayan-card message-card" id="card-message">
+        <div class="mayan-fret-top"></div>
+        <div class="mayan-card-border"></div>
+        <div class="corner-glyph corner-tl"></div>
+        <div class="corner-glyph corner-tr"></div>
+        <div class="corner-glyph corner-bl"></div>
+        <div class="corner-glyph corner-br"></div>
+
+        <!-- Sello de la Familia (Imagen 5) -->
+        <div class="family-seal-box">
+          <img src="sello-familia.jpg" alt="Sello de la Familia de Amalia e Israel" class="family-seal-img">
+        </div>
+
+        <span class="section-pretitle">Palabras de los novios</span>
+        <h2 class="section-title gold-text">Nuestras Bodas de Plata</h2>
+        <div class="silver-anniversary-lead">Amalia e Israel · 25 años de amor, sueños y una vida compartida</div>
+
+        <div class="ornament-line">
+          <span>✦</span>
+        </div>
+
+        <!-- Mensaje exacto de los novios -->
+        <p class="message-paragraph">
+          "Hace 25 años decidimos unir nuestras vidas y dimos aquel gran paso sin imaginar todas las experiencias que la vida nos tenía preparados, hemos compartido momentos maravillosos, superando dificultades, aprendimos a caminar de la mano, vivimos la bendición de convertirnos en padres y formar nuestra familia."
+        </p>
+        <p class="message-paragraph">
+          "Hoy damos gracias a Dios por cada experiencia, por las alegrías y por el amor que nos ha mantenido unidos."
+        </p>
+        <p class="message-paragraph">
+          "Qué mejor manera de hacerlo rodeado de las personas que queremos, quienes de una u otra forma han sido parte de nuestra historia."
+        </p>
+
+        <span class="signature-text">Amalia e Israel</span>
+
+        <div class="mayan-quote-box">
+          IN LAK'ECH · HALA KEN
+          <span class="mayan-quote-sub">(Yo soy otro tú · Tú eres otro yo)</span>
+        </div>
+
+        <div class="mayan-fret-bottom"></div>
+      </article>
+
+
+      <!-- 2. CUENTA REGRESIVA -->
+      <article class="mayan-card" id="card-countdown">
+        <div class="mayan-fret-top"></div>
+        <div class="mayan-card-border"></div>
+        <div class="corner-glyph corner-tl"></div>
+        <div class="corner-glyph corner-tr"></div>
+        <div class="corner-glyph corner-bl"></div>
+        <div class="corner-glyph corner-br"></div>
+
+        <div style="text-align:center;">
+          <span class="section-pretitle">El tiempo sagrado</span>
+          <h2 class="section-title gold-text">Cuenta Regresiva</h2>
+          <p style="font-family:var(--font-heading); font-size:13px; letter-spacing:3px; color:var(--oro-sol); opacity:0.85;">
+            23 · ENERO · 2027 · VALLADOLID
+          </p>
+        </div>
+
+        <div class="countdown-grid" role="timer" aria-label="Tiempo restante para la boda">
+          <div class="countdown-box">
+            <span class="countdown-number" id="cd-days">000</span>
+            <span class="countdown-label">Días</span>
+          </div>
+          <div class="countdown-box">
+            <span class="countdown-number" id="cd-hours">00</span>
+            <span class="countdown-label">Horas</span>
+          </div>
+          <div class="countdown-box">
+            <span class="countdown-number" id="cd-mins">00</span>
+            <span class="countdown-label">Minutos</span>
+          </div>
+          <div class="countdown-box">
+            <span class="countdown-number" id="cd-secs">00</span>
+            <span class="countdown-label">Segundos</span>
+          </div>
+        </div>
+
+        <div class="mayan-fret-bottom"></div>
+      </article>
+
+
+      <!-- 3. LA CEREMONIA MAYA & LOS 4 ELEMENTOS -->
+      <article class="mayan-card" id="card-ceremony">
+        <div class="mayan-fret-top"></div>
+        <div class="mayan-card-border"></div>
+        <div class="corner-glyph corner-tl"></div>
+        <div class="corner-glyph corner-tr"></div>
+        <div class="corner-glyph corner-bl"></div>
+        <div class="corner-glyph corner-br"></div>
+
+        <div style="text-align:center;">
+          <span class="section-pretitle">Tradición Ancestral</span>
+          <h2 class="section-title gold-text">Rito Sagrado Maya</h2>
+          <p style="font-family:var(--font-body); font-size:20px; font-style:italic; line-height:1.75; color:var(--marfil-calido); max-width:520px; margin:0 auto 10px;">
+            Nuestra unión y renovación de 25 años será celebrada mediante el tradicional rito maya. Un j-meen (sacerdote maya) consagrará nuestro amor invocando la energía de los cuatro rumbos del cosmos y la bendición de los elementos.
+          </p>
+        </div>
+
+        <div class="elements-grid">
+          <div class="element-card">
+            <div class="element-header">
+              <span class="element-icon">💨</span>
+              <span>Ik' · Viento (Norte)</span>
+            </div>
+            <p class="element-text">
+              El aliento de vida y las palabras sagradas que elevan nuestras plegarias al cielo de Mayab.
+            </p>
+          </div>
+
+          <div class="element-card">
+            <div class="element-header">
+              <span class="element-icon">🔥</span>
+              <span>K'áak' · Fuego (Oriente)</span>
+            </div>
+            <p class="element-text">
+              El copal sagrado que purifica las almas y la llama del amor que permanece encendida tras 25 años.
+            </p>
+          </div>
+
+          <div class="element-card">
+            <div class="element-header">
+              <span class="element-icon">💧</span>
+              <span>Ja' · Agua (Poniente)</span>
+            </div>
+            <p class="element-text">
+              Las aguas puras de los cenotes de Yucatán, símbolo de fertilidad, calma y renacimiento espiritual.
+            </p>
+          </div>
+
+          <div class="element-card">
+            <div class="element-header">
+              <span class="element-icon">🌱</span>
+              <span>Lu'um · Tierra (Sur)</span>
+            </div>
+            <p class="element-text">
+              La ceiba sagrada (Yaxché), árbol de la vida que une el inframundo, la tierra y las trece alturas celestes.
+            </p>
+          </div>
+        </div>
+
+        <div class="mayan-fret-bottom"></div>
+      </article>
+
+
+      <!-- 4. ITINERARIO DE LA CELEBRACIÓN -->
+      <article class="mayan-card" id="card-itinerary">
+        <div class="mayan-fret-top"></div>
+        <div class="mayan-card-border"></div>
+        <div class="corner-glyph corner-tl"></div>
+        <div class="corner-glyph corner-tr"></div>
+        <div class="corner-glyph corner-bl"></div>
+        <div class="corner-glyph corner-br"></div>
+
+        <div style="text-align:center;">
+          <span class="section-pretitle">Cronograma del día</span>
+          <h2 class="section-title gold-text">Itinerario Sagrado</h2>
+        </div>
+
+        <div class="itinerary-list">
+          <div class="itinerary-item">
+            <div class="itinerary-dot"></div>
+            <div class="itinerary-time">16:00 HRS</div>
+            <h3 class="itinerary-title">Recepción &amp; Sahumerio de Copal</h3>
+            <p class="itinerary-desc">Bienvenida ceremonial y purificación de los invitados con resinas sagradas mayas.</p>
+          </div>
+
+          <div class="itinerary-item">
+            <div class="itinerary-dot"></div>
+            <div class="itinerary-time">16:30 HRS</div>
+            <h3 class="itinerary-title">Ceremonia Maya K'aam Nikte'</h3>
+            <p class="itinerary-desc">Rito nupcial de bodas de plata presidido por el j-meen bajo la ceiba sagrada.</p>
+          </div>
+
+          <div class="itinerary-item">
+            <div class="itinerary-dot"></div>
+            <div class="itinerary-time">18:00 HRS</div>
+            <h3 class="itinerary-title">Brindis de Plata &amp; Fotografía</h3>
+            <p class="itinerary-desc">Brindis conmemorativo por los 25 años y sesión fotográfica con familiares y amigos.</p>
+          </div>
+
+          <div class="itinerary-item">
+            <div class="itinerary-dot"></div>
+            <div class="itinerary-time">19:00 HRS</div>
+            <h3 class="itinerary-title">Banquete Yucateco</h3>
+            <p class="itinerary-desc">Cena ceremonial con los mejores platillos y sabores tradicionales de la gastronomía yucateca.</p>
+          </div>
+
+          <div class="itinerary-item">
+            <div class="itinerary-dot"></div>
+            <div class="itinerary-time">21:00 HRS</div>
+            <h3 class="itinerary-title">Celebración &amp; Fiesta</h3>
+            <p class="itinerary-desc">Música, baile y alegría bajo el manto estelar de la noche de Valladolid.</p>
+          </div>
+        </div>
+
+        <div class="mayan-fret-bottom"></div>
+      </article>
+
+
+      <!-- 5. UBICACIONES & HOSPEDAJE -->
+      <article class="mayan-card" id="card-venue">
+        <div class="mayan-fret-top"></div>
+        <div class="mayan-card-border"></div>
+        <div class="corner-glyph corner-tl"></div>
+        <div class="corner-glyph corner-tr"></div>
+        <div class="corner-glyph corner-bl"></div>
+        <div class="corner-glyph corner-br"></div>
+
+        <div style="text-align:center; margin-bottom: 12px;">
+          <span class="section-pretitle">Guía de llegada</span>
+          <h2 class="section-title gold-text">Lugar &amp; Hospedaje</h2>
+        </div>
+
+        <!-- Lugar del evento principal -->
+        <div class="venue-block">
+          <div class="venue-pill">Ceremonia &amp; Recepción</div>
+          <h3 class="venue-name">Hotel Hacienda Valladolid</h3>
+          <p class="venue-address">
+            Valladolid, Yucatán, México<br>
+            <strong style="color:var(--oro-sol);">Sábado 23 de Enero, 2027 · 16:30 hrs</strong>
+          </p>
+          <div class="venue-actions">
+            <a href="https://www.google.com/maps/search/?api=1&query=Hotel+Hacienda+Valladolid+Yucatan"
+               target="_blank" rel="noopener noreferrer" class="btn btn-gold">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                <path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/>
+                <circle cx="12" cy="10" r="3"/>
+              </svg>
+              Abrir Google Maps
+            </a>
+            <a href="https://waze.com/ul?q=Hotel+Hacienda+Valladolid+Yucatan"
+               target="_blank" rel="noopener noreferrer" class="btn btn-outline-gold">
+              <svg viewBox="0 0 24 24" fill="currentColor">
+                <path d="M12 2a10 10 0 1 0 10 10A10 10 0 0 0 12 2zm1 14.5a1.5 1.5 0 1 1 1.5-1.5A1.5 1.5 0 0 1 13 16.5zm-3-3a1.5 1.5 0 1 1 1.5-1.5A1.5 1.5 0 0 1 10 13.5z"/>
+              </svg>
+              Abrir en Waze
+            </a>
+          </div>
+        </div>
+
+        <!-- Hospedaje sugerido -->
+        <div class="venue-block">
+          <div class="venue-pill alt">Hospedaje Recomendado</div>
+          <h3 class="venue-name">Hotel Kuxtal Valladolid</h3>
+          <p class="venue-address">
+            Calle 42 por 45 y 47, Col. Centro<br>
+            Valladolid, Yucatán, México
+          </p>
+          <div class="venue-actions">
+            <a href="https://www.google.com/maps/search/?api=1&query=Hotel+Kuxtal+Calle+42+por+45+y+47+Centro+Valladolid+Yucatan"
+               target="_blank" rel="noopener noreferrer" class="btn btn-outline-gold">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                <path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/>
+                <polyline points="9 22 9 12 15 12 15 22"/>
+              </svg>
+              Ver Hotel Kuxtal en Maps
+            </a>
+          </div>
+        </div>
+
+        <div class="mayan-fret-bottom"></div>
+      </article>
+
+
+      <!-- 6. CÓDIGO DE VESTIMENTA (REQUERIMIENTO EXACTO DEL USUARIO) -->
+      <article class="mayan-card" id="card-dresscode">
+        <div class="mayan-fret-top"></div>
+        <div class="mayan-card-border"></div>
+        <div class="corner-glyph corner-tl"></div>
+        <div class="corner-glyph corner-tr"></div>
+        <div class="corner-glyph corner-bl"></div>
+        <div class="corner-glyph corner-br"></div>
+
+        <div style="text-align:center;">
+          <span class="section-pretitle">Etiqueta ceremonial</span>
+          <h2 class="section-title gold-text">Código de Vestimenta</h2>
+          <p style="font-family:var(--font-heading); font-size:13px; letter-spacing:3px; color:var(--oro-sol); margin-bottom:14px;">
+            ELEGANCIA YUCATECA EN TONOS CLAROS
+          </p>
+        </div>
+
+        <div class="dress-code-box">
+          <!-- Regla estricta solicitada por los novios -->
+          <div class="dress-rule-alert">
+            <strong>⚠️ Protocolo Ceremonial Sagrado</strong>
+            <p>Se solicita amablemente a todos los invitados: <strong>NO prendas de color blanco</strong> y <strong>NO estampados con flores</strong>.</p>
+          </div>
+
+          <div class="dress-columns">
+            <!-- MUJERES -->
+            <div class="dress-card-col">
+              <span class="dress-gender-icon">💃</span>
+              <h3 class="dress-gender-title">Mujeres</h3>
+              <div class="dress-rule-highlight">
+                Colores claros · NO blanco · SIN flores
+              </div>
+              <p class="dress-rule-details">
+                Vestido formal midi o largo en lino, seda o telas fluidas. Tonos ideales: beige, champaña, arena, marfil suave, verde menta pálido o rosa cuarzo.<br>
+                <em>Calzado cómodo o cuña para jardín de hacienda.</em>
+              </p>
+              <div class="swatch-group" title="Colores sugeridos: Beige, Arena, Champaña, Salvia">
+                <span class="swatch" style="background:#e4d5b7;"></span>
+                <span class="swatch" style="background:#d9c5a5;"></span>
+                <span class="swatch" style="background:#c5b8a5;"></span>
+                <span class="swatch" style="background:#b9c4b2;"></span>
+              </div>
+            </div>
+
+            <!-- HOMBRES -->
+            <div class="dress-card-col">
+              <span class="dress-gender-icon">🤵</span>
+              <h3 class="dress-gender-title">Hombres</h3>
+              <div class="dress-rule-highlight">
+                Guayabera o camisa NO blanca · SIN flores
+              </div>
+              <p class="dress-rule-details">
+                Opción de guayabera tradicional o camisa de manga larga en lino fresco (tonos beige, arena, tostado, gris perla o azul cielo tenue). Pantalón de vestir en tonos claros.<br>
+                <em>Sin corbata ni saco oscuro.</em>
+              </p>
+              <div class="swatch-group" title="Colores sugeridos: Arena, Tostado, Hueso, Azul tenue">
+                <span class="swatch" style="background:#d4c4a8;"></span>
+                <span class="swatch" style="background:#c1b092;"></span>
+                <span class="swatch" style="background:#b5aa94;"></span>
+                <span class="swatch" style="background:#a7b8c7;"></span>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="mayan-fret-bottom"></div>
+      </article>
+
+
+      <!-- 7. MESA DE REGALOS: UN DETALLE PARA NUESTRA NUEVA HISTORIA -->
+      <article class="mayan-card gifts-card" id="card-gifts">
+        <div class="mayan-fret-top"></div>
+        <div class="mayan-card-border"></div>
+        <div class="corner-glyph corner-tl"></div>
+        <div class="corner-glyph corner-tr"></div>
+        <div class="corner-glyph corner-bl"></div>
+        <div class="corner-glyph corner-br"></div>
+
+        <span class="section-pretitle">Mesa de Regalos</span>
+        <h2 class="section-title gold-text">Un detalle para nuestra nueva historia</h2>
+
+        <div class="ornament-line">
+          <span>✦</span>
+        </div>
+
+        <p style="font-family:var(--font-body); font-size:22px; font-style:italic; color:var(--oro-sol); margin-bottom:18px;">
+          "Hay regalos que se guardan en una caja y otros que se convierten en recuerdos para toda la vida."
+        </p>
+
+        <p class="gifts-message">
+          Lo más valioso para nosotros será tenerlos cerca, compartir nuestra alegría y celebrar juntos el inicio de esta nueva etapa.
+        </p>
+        <p class="gifts-message">
+          Pero si además desean regalarnos un detalle, nos hará muchísima ilusión recibirlo. Cada aportación será una pequeña semilla de cariño que nos acompañará en la construcción de nuestro nuevo hogar y de todos los sueños que estamos por compartir.
+        </p>
+
+        <h3 class="gold-text" style="font-family:var(--font-heading); font-size:20px; font-weight:700; letter-spacing:1.5px; margin:24px 0 14px;">
+          Un regalo desde el corazón
+        </h3>
+
+        <!-- Tarjeta bancaria ceremonial BBVA -->
+        <div class="bank-card">
+          <div class="bank-holder-label">Titular de la cuenta</div>
+          <div class="bank-holder-name">Amalia García Martínez</div>
+
+          <!-- No. de Cuenta -->
+          <div class="bank-row">
+            <div class="bank-field-info">
+              <span class="bank-field-label">Número de cuenta</span>
+              <span class="bank-field-val" id="val-cuenta">1576950224</span>
+            </div>
+            <button class="btn-copy" onclick="copyToClipboard('1576950224', 'Número de cuenta')" aria-label="Copiar número de cuenta">
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <rect x="9" y="9" width="13" height="13" rx="2" ry="2"/>
+                <path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"/>
+              </svg>
+              Copiar
+            </button>
+          </div>
+
+          <!-- CLABE -->
+          <div class="bank-row">
+            <div class="bank-field-info">
+              <span class="bank-field-label">CLABE interbancaria</span>
+              <span class="bank-field-val" id="val-clabe">012 180 015769022247</span>
+            </div>
+            <button class="btn-copy" onclick="copyToClipboard('012180015769022247', 'CLABE interbancaria')" aria-label="Copiar cuenta CLABE">
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <rect x="9" y="9" width="13" height="13" rx="2" ry="2"/>
+                <path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"/>
+              </svg>
+              Copiar
+            </button>
+          </div>
+        </div>
+
+        <p style="font-family:var(--font-sans); font-size:14px; font-style:italic; color:var(--arena); opacity:0.9; margin: 14px auto 24px; max-width:480px;">
+          Pueden realizar su aportación mediante transferencia bancaria. Cada detalle será recibido con muchísimo cariño y gratitud.
+        </p>
+
+        <!-- Una tradición para compartir: Baúl de buenos deseos -->
+        <div style="background:rgba(10, 29, 23, 0.75); border:1px solid rgba(223, 177, 91, 0.35); border-radius:var(--radius-sm); padding:20px; max-width:500px; margin:0 auto 20px;">
+          <h3 class="gold-text" style="font-family:var(--font-heading); font-size:18px; font-weight:700; letter-spacing:1.5px; margin-bottom:8px;">
+            Una tradición para compartir
+          </h3>
+          <p style="font-family:var(--font-sans); font-size:14.5px; line-height:1.7; color:var(--marfil-calido);">
+            Durante la celebración también encontrarán nuestro <strong>baúl de los buenos deseos</strong>, donde podrán depositar un sobre con el detalle que nazca de su corazón.
+          </p>
+        </div>
+
+        <p style="font-family:var(--font-heading); font-size:16px; font-weight:700; letter-spacing:2px; color:var(--oro-sol); margin-top:20px;">
+          Gracias por ser parte de nuestra historia.
+        </p>
+        <p style="font-family:var(--font-mayan); font-size:22px; color:var(--oro-brillo); margin-top:6px;">
+          Con cariño, Amalia &amp; Israel.
+        </p>
+
+        <div class="mayan-fret-bottom"></div>
+      </article>
+
+
+      <!-- 8. CONFIRMACIÓN DE ASISTENCIA (RSVP) — ANTES DEL 1 DE DICIEMBRE -->
+      <article class="mayan-card" id="card-rsvp">
+        <div class="mayan-fret-top"></div>
+        <div class="mayan-card-border"></div>
+        <div class="corner-glyph corner-tl"></div>
+        <div class="corner-glyph corner-tr"></div>
+        <div class="corner-glyph corner-bl"></div>
+        <div class="corner-glyph corner-br"></div>
+
+        <div style="text-align:center;">
+          <span class="section-pretitle">Acompáñanos a celebrar</span>
+          <h2 class="section-title gold-text">Confirmar Asistencia</h2>
+          
+          <div class="rsvp-deadline-badge">
+            Favor de confirmar antes del 1 de Diciembre
+          </div>
+
+          <p style="font-family:var(--font-body); font-size:20px; font-style:italic; line-height:1.7; color:var(--marfil-calido); max-width:480px; margin:0 auto 24px;">
+            Tu presencia y bendición iluminarán este momento tan significativo para nosotros. Te pedimos confirmar tu asistencia para tener todo listo para ti.
+          </p>
+        </div>
+
+        <form class="rsvp-form-container" id="rsvp-form" onsubmit="handleRsvpSubmit(event)">
+          <div class="form-group">
+            <label class="form-label" for="rsvp-name">Nombre / Familia Invitada</label>
+            <input type="text" id="rsvp-name" class="form-input" required placeholder="Ej. Familia Martínez">
+          </div>
+
+          <div class="form-group">
+            <label class="form-label" for="rsvp-status">¿Nos acompañarás?</label>
+            <select id="rsvp-status" class="form-select">
+              <option value="si">¡Sí, con mucho honor y alegría estaré ahí! ✨</option>
+              <option value="no">Lamentablemente no podré asistir con ustedes 🙏</option>
+            </select>
+          </div>
+
+          <div class="form-group" id="group-guests">
+            <label class="form-label" for="rsvp-guests">Número de personas que asisten</label>
+            <select id="rsvp-guests" class="form-select">
+              <option value="1">1 persona</option>
+              <option value="2" selected>2 personas</option>
+              <option value="3">3 personas</option>
+              <option value="4">4 personas</option>
+              <option value="5">5 personas</option>
+              <option value="familia">Toda la familia confirmada</option>
+            </select>
+          </div>
+
+          <div class="form-group">
+            <label class="form-label" for="rsvp-msg">Mensaje para Amalia e Israel (opcional)</label>
+            <textarea id="rsvp-msg" class="form-textarea" rows="2" placeholder="Dedicatoria o palabras de cariño..."></textarea>
+          </div>
+
+          <button type="submit" class="btn btn-gold btn-full">
+            <svg viewBox="0 0 24 24" fill="currentColor">
+              <path d="M12.04 2c-5.46 0-9.91 4.45-9.91 9.91 0 1.75.46 3.45 1.32 4.95L2.05 22l5.25-1.38c1.45.79 3.08 1.21 4.74 1.21 5.46 0 9.91-4.45 9.91-9.91 0-2.65-1.03-5.14-2.9-7.01A9.816 9.816 0 0 0 12.04 2zm.01 18.15c-1.49 0-2.95-.4-4.22-1.16l-.3-.18-3.13.82.84-3.05-.2-.31c-.84-1.33-1.28-2.89-1.28-4.48 0-4.54 3.7-8.24 8.24-8.24 2.2 0 4.27.86 5.82 2.42a8.18 8.18 0 0 1 2.41 5.83c.01 4.54-3.69 8.24-8.23 8.24zm4.52-6.17c-.25-.12-1.47-.72-1.7-.81-.23-.08-.39-.12-.56.12-.17.25-.64.81-.79.97-.14.17-.29.19-.54.06-.25-.12-1.05-.39-2-1.23-.74-.66-1.24-1.47-1.39-1.72-.14-.25-.02-.38.11-.51.11-.11.25-.29.37-.43s.17-.25.25-.41c.08-.17.04-.31-.02-.43s-.56-1.34-.76-1.84c-.2-.48-.41-.42-.56-.43h-.48c-.17 0-.43.06-.66.31-.22.25-.86.84-.86 2.05s.88 2.38 1 2.54c.12.17 1.73 2.65 4.2 3.71.59.25 1.05.4 1.41.51.59.19 1.13.16 1.56.1.48-.07 1.47-.6 1.68-1.18.21-.58.21-1.07.15-1.18-.07-.12-.23-.19-.48-.31z"/>
+            </svg>
+            Confirmar por WhatsApp
+          </button>
+        </form>
+
+        <div class="mayan-fret-bottom"></div>
+      </article>
+
+
+      <!-- 9. DESPEDIDA & EMBLEMA SAGRADO (IMAGEN 3) -->
+      <footer class="mayan-card closing-card">
+        <div class="mayan-fret-top"></div>
+        <div class="mayan-card-border"></div>
+        <div class="corner-glyph corner-tl"></div>
+        <div class="corner-glyph corner-tr"></div>
+        <div class="corner-glyph corner-bl"></div>
+        <div class="corner-glyph corner-br"></div>
+
+        <!-- Emblema A & I (Imagen 3) -->
+        <div class="ai-emblem-box">
+          <img src="emblema-ai.jpg" alt="Emblema Sagrado Amalia e Israel" class="ai-emblem-img">
+        </div>
+
+        <p class="closing-verse">
+          "Gracias por ser parte fundamental de estos 25 años de amor, bendiciones y memorias compartidas. ¡Nos vemos en Valladolid para celebrar juntos la vida!"
+        </p>
+
+        <div class="closing-couple-names gold-text-glow">
+          Amalia &amp; Israel
+        </div>
+
+        <div class="closing-city">
+          K'AAM NIKTE' · VALLADOLID · 2027
+        </div>
+
+        <div class="mayan-fret-bottom"></div>
+      </footer>
+
+      <!-- PIE DE PÁGINA (CRÉDITO DISCRETO EXACTO SOLICITADO) -->
+      <div class="site-footer">
+        <p class="credit-text">
+          Realizado por : Francisco Javier Martínez Gutiérrez. Contacto: <a href="mailto:xaviermtzgutierrez@gmail.com">xaviermtzgutierrez@gmail.com</a>
+        </p>
+      </div>
+
+    </div><!-- /main-container -->
+  </main>
+
+
+  <!-- ===========================================================
+       SCRIPTS: AUDIO ALEATORIO, PARTICULAS, APERTURA Y UTILIDADES
+  =========================================================== -->
+  <script>
+  /* ================================================================
+     CONFIGURACIÓN CENTRAL
+  ================================================================ */
+  const CONFIG = Object.freeze({
+    COUPLE_NAMES:     'Amalia e Israel',
+    EVENT_DATE:       '2027-01-23T16:30:00',
+    RSVP_DEADLINE:    '1 de Diciembre de 2026',
+    WHATSAPP_NUMBER:  '5217716995004',
+    GS_SCRIPT_URL:    'https://script.google.com/macros/s/AKfycbyPw15Pf3IpDGUHVX2bBIWEIT3d3RCxo_z3TGOP_Db-eZj_0hxMJtSjoFXYtG70I8np/exec',
+    AUDIO_TRACKS:     ['cenote-rhythms-1.mp3', 'cenote-rhythms-2.mp3'],
+    DEFAULT_GUEST:    'Familia Invitada'
+  });
+
+  /* ================================================================
+     SISTEMA DE AUDIO: ALEATORIO Y EN LOOP CONTINUO
+  ================================================================ */
+  const audioPlayer   = document.getElementById('audio-ceremonial');
+  const btnMusic      = document.getElementById('btn-music-toggle');
+  const musicBtnText  = document.getElementById('music-btn-text');
+
+  let currentTrackIdx = Math.floor(Math.random() * CONFIG.AUDIO_TRACKS.length);
+  let isPlaying       = false;
+
+  function loadTrack(idx) {
+    audioPlayer.src = CONFIG.AUDIO_TRACKS[idx];
+    audioPlayer.volume = 0.65;
+  }
+
+  function startRandomMusic() {
+    if (isPlaying) return;
+    loadTrack(currentTrackIdx);
+    audioPlayer.play().then(() => {
+      isPlaying = true;
+      btnMusic.classList.add('playing');
+      musicBtnText.textContent = 'Música';
+    }).catch(err => {
+      console.log('Esperando interacción del usuario para reproducir audio:', err);
+    });
+  }
+
+  // Cuando termina una canción, reproduce la siguiente en bucle infinito
+  audioPlayer.addEventListener('ended', () => {
+    currentTrackIdx = (currentTrackIdx + 1) % CONFIG.AUDIO_TRACKS.length;
+    loadTrack(currentTrackIdx);
+    audioPlayer.play().catch(() => {});
+  });
+
+  // Botón para silenciar / reanudar
+  btnMusic.addEventListener('click', () => {
+    if (isPlaying) {
+      audioPlayer.pause();
+      isPlaying = false;
+      btnMusic.classList.remove('playing');
+      musicBtnText.textContent = 'Silenciado';
+    } else {
+      if (!audioPlayer.src) loadTrack(currentTrackIdx);
+      audioPlayer.play().then(() => {
+        isPlaying = true;
+        btnMusic.classList.add('playing');
+        musicBtnText.textContent = 'Música';
+      }).catch(() => {});
+    }
+  });
+
+  /* ================================================================
+     CANVAS DE PARTÍCULAS: CHISPAS DE ORO, FUEGO SAGRADO & JADE
+  ================================================================ */
+  (function initCanvasParticles() {
+    const canvas = document.getElementById('canvas-particles');
+    if (!canvas) return;
+    const ctx = canvas.getContext('2d');
+
+    let w, h;
+    function resize() {
+      w = canvas.width = window.innerWidth;
+      h = canvas.height = window.innerHeight;
+    }
+    resize();
+    window.addEventListener('resize', resize);
+
+    const PARTICLE_COUNT = 45;
+    const particles = [];
+
+    const PALETTE = [
+      'rgba(255, 235, 150,', // Oro brillante
+      'rgba(223, 177, 91,',  // Oro maya
+      'rgba(25, 107, 84,',   // Jade esmeralda
+      'rgba(243, 238, 227,'  // Marfil copal
+    ];
+
+    class Spark {
+      constructor(initial = false) {
+        this.reset(initial);
+      }
+      reset(initial = false) {
+        this.x = Math.random() * w;
+        this.y = initial ? Math.random() * h : h + 15;
+        this.size = Math.random() * 2.8 + 0.6;
+        this.speedY = Math.random() * 0.7 + 0.2;
+        this.speedX = (Math.random() - 0.5) * 0.5;
+        this.baseAlpha = Math.random() * 0.5 + 0.2;
+        this.alpha = this.baseAlpha;
+        this.color = PALETTE[Math.floor(Math.random() * PALETTE.length)];
+        this.pulse = Math.random() * 0.05 + 0.01;
+        this.angle = Math.random() * Math.PI * 2;
+      }
+      update() {
+        this.y -= this.speedY;
+        this.x += this.speedX + Math.sin(this.angle) * 0.3;
+        this.angle += 0.02;
+        this.alpha = this.baseAlpha + Math.sin(this.angle) * 0.2;
+        if (this.y < -20 || this.x < -20 || this.x > w + 20) {
+          this.reset(false);
+        }
+      }
+      draw() {
+        ctx.save();
+        ctx.fillStyle = `${this.color} ${Math.max(0.05, this.alpha)})`;
+        ctx.shadowColor = 'rgba(255, 215, 104, 0.7)';
+        ctx.shadowBlur = this.size * 3;
+        ctx.beginPath();
+        ctx.arc(this.x, this.y, this.size, 0, Math.PI * 2);
+        ctx.fill();
+        ctx.restore();
+      }
+    }
+
+    for (let i = 0; i < PARTICLE_COUNT; i++) {
+      particles.push(new Spark(true));
+    }
+
+    function animate() {
+      ctx.clearRect(0, 0, w, h);
+      particles.forEach(p => {
+        p.update();
+        p.draw();
+      });
+      requestAnimationFrame(animate);
+    }
+    animate();
+  })();
+
+  /* ================================================================
+     PERSONALIZACIÓN POR URL (?familia= o ?nombre=)
+  ================================================================ */
+  let guestName = CONFIG.DEFAULT_GUEST;
+  (function initGuestParam() {
+    const params = new URLSearchParams(window.location.search);
+    const raw = params.get('familia') || params.get('nombre') || params.get('invitado');
+    if (raw) {
+      guestName = raw.trim();
+      const elIntro = document.getElementById('guest-display-intro');
+      if (elIntro) elIntro.textContent = guestName;
+      const rsvpInput = document.getElementById('rsvp-name');
+      if (rsvpInput) rsvpInput.value = guestName;
+    }
+  })();
+
+  /* ================================================================
+     APERTURA DEL SOBRE CEREMONIAL
+  ================================================================ */
+  (function initEnvelope() {
+    const envelope = document.getElementById('envelope-ceremonial');
+    const seal     = document.getElementById('envelope-seal');
+    const flap     = document.getElementById('env-flap');
+    const intro    = document.getElementById('screen-intro');
+    const main     = document.getElementById('screen-main');
+
+    let opened = false;
+
+    function openEnvelope() {
+      if (opened) return;
+      opened = true;
+
+      // Romper sello con destello
+      seal.classList.add('breaking');
+      envelope.classList.add('opened');
+
+      // Iniciar música ceremonial aleatoria
+      startRandomMusic();
+
+      // Enviar telemetría si está habilitada
+      try {
+        if (CONFIG.GS_SCRIPT_URL) {
+          fetch(`${CONFIG.GS_SCRIPT_URL}?action=view_opened&familia=${encodeURIComponent(guestName)}`, {
+            method: 'GET',
+            mode: 'no-cors'
+          }).catch(() => {});
+        }
+      } catch (_) {}
+
+      // Transición cinemática a la segunda hoja
+      setTimeout(() => {
+        intro.classList.add('hiding');
+      }, 550);
+
+      setTimeout(() => {
+        intro.style.display = 'none';
+        main.classList.add('visible');
+        window.scrollTo({ top: 0, behavior: 'smooth' });
+        initCountdown();
+      }, 1250);
+    }
+
+    envelope.addEventListener('click', openEnvelope);
+    envelope.addEventListener('keydown', (e) => {
+      if (e.key === 'Enter' || e.key === ' ') {
+        e.preventDefault();
+        openEnvelope();
+      }
+    });
+  })();
+
+  /* ================================================================
+     CUENTA REGRESIVA EN VIVO
+  ================================================================ */
+  function initCountdown() {
+    const target = new Date(CONFIG.EVENT_DATE).getTime();
+    const elD = document.getElementById('cd-days');
+    const elH = document.getElementById('cd-hours');
+    const elM = document.getElementById('cd-mins');
+    const elS = document.getElementById('cd-secs');
+
+    function update() {
+      const now = Date.now();
+      const diff = target - now;
+
+      if (diff <= 0) {
+        if (elD) elD.textContent = '000';
+        if (elH) elH.textContent = elM.textContent = elS.textContent = '00';
+        return;
+      }
+
+      const days  = Math.floor(diff / (1000 * 60 * 60 * 24));
+      const hours = Math.floor((diff % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+      const mins  = Math.floor((diff % (1000 * 60 * 60)) / (1000 * 60));
+      const secs  = Math.floor((diff % (1000 * 60)) / 1000);
+
+      if (elD) elD.textContent = String(days).padStart(3, '0');
+      if (elH) elH.textContent = String(hours).padStart(2, '0');
+      if (elM) elM.textContent = String(mins).padStart(2, '0');
+      if (elS) elS.textContent = String(secs).padStart(2, '0');
+    }
+
+    update();
+    setInterval(update, 1000);
+  }
+
+  /* ================================================================
+     COPIAR DATOS BANCARIOS CON TOAST
+  ================================================================ */
+  function copyToClipboard(text, fieldName) {
+    navigator.clipboard.writeText(text).then(() => {
+      showToast(`¡${fieldName} copiado con éxito! ✨`);
+    }).catch(() => {
+      // Fallback
+      const ta = document.createElement('textarea');
+      ta.value = text;
+      document.body.appendChild(ta);
+      ta.select();
+      document.execCommand('copy');
+      document.body.removeChild(ta);
+      showToast(`¡${fieldName} copiado con éxito! ✨`);
+    });
+  }
+
+  function showToast(msg) {
+    const toast = document.getElementById('toast-notification');
+    const textEl = document.getElementById('toast-text');
+    if (!toast || !textEl) return;
+    textEl.textContent = msg;
+    toast.classList.add('show');
+    setTimeout(() => {
+      toast.classList.remove('show');
+    }, 3200);
+  }
+
+  /* ================================================================
+     GESTIÓN DE RSVP Y WHATSAPP
+  ================================================================ */
+  function handleRsvpSubmit(e) {
+    e.preventDefault();
+
+    const name   = document.getElementById('rsvp-name').value.trim() || guestName;
+    const status = document.getElementById('rsvp-status').value;
+    const guests = document.getElementById('rsvp-guests').value;
+    const msg    = document.getElementById('rsvp-msg').value.trim();
+
+    const isAttending = (status === 'si');
+
+    const lines = [
+      `¡Hola Amalia e Israel! 🌿✨`,
+      ``,
+      isAttending 
+        ? `Con mucha alegría confirmo mi asistencia a sus Bodas de Plata y Enlace Sagrado Maya:`
+        : `Les envío mis felicitaciones con mucho cariño por sus 25 años de matrimonio, lamentablemente no podré asistir:`,
+      ``,
+      `• *Invitado/Familia:* ${name}`,
+      `• *Asistencia:* ${isAttending ? '¡Sí asistiré!' : 'No podré asistir'}`,
+    ];
+
+    if (isAttending) {
+      lines.push(`• *Pases / Personas:* ${guests}`);
+    }
+
+    lines.push(`• *Fecha:* Sábado 23 de Enero, 2027 · 16:30 hrs`);
+    lines.push(`• *Lugar:* Hotel Hacienda Valladolid, Yucatán`);
+
+    if (msg) {
+      lines.push(``);
+      lines.push(`💌 *Mensaje:* "${msg}"`);
+    }
+
+    lines.push(``);
+    lines.push(`¡In Lak'ech · Hala Ken! 🕊️`);
+
+    const fullMessage = lines.join('\n');
+
+    // Registrar intención de RSVP en telemetría
+    try {
+      if (CONFIG.GS_SCRIPT_URL) {
+        fetch(`${CONFIG.GS_SCRIPT_URL}?action=whatsapp_intent&familia=${encodeURIComponent(name)}&asistencia=${encodeURIComponent(isAttending ? 'SI' : 'NO')}`, {
+          method: 'GET',
+          mode: 'no-cors'
+        }).catch(() => {});
+      }
+    } catch (_) {}
+
+    const url = `https://wa.me/${CONFIG.WHATSAPP_NUMBER}?text=${encodeURIComponent(fullMessage)}`;
+    window.open(url, '_blank', 'noopener,noreferrer');
+  }
+
+  // Si selecciona "No podré asistir", oculta el campo de número de personas
+  document.getElementById('rsvp-status').addEventListener('change', function() {
+    const groupGuests = document.getElementById('group-guests');
+    if (this.value === 'no') {
+      groupGuests.style.display = 'none';
+    } else {
+      groupGuests.style.display = 'block';
+    }
+  });
+
+  /* ================================================================
+     DETECCIÓN DE REDUCED MOTION Y VISIBILIDAD DE PESTAÑA
+  ================================================================ */
+  document.addEventListener('visibilitychange', () => {
+    if (document.hidden && isPlaying) {
+      audioPlayer.pause();
+    } else if (!document.hidden && isPlaying) {
+      audioPlayer.play().catch(() => {});
+    }
+  });
+  </script>
+</body>
+</html>
