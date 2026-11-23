@@ -1797,9 +1797,7 @@
           <div style="font-size:24px; color:var(--oro-sol); margin-bottom:8px;">✦ 🌿 ✦</div>
           <span class="section-pretitle">Con el honor de su compañía</span>
           
-          <h2 class="family-invitation-heading gold-text-glow" id="main-family-title">
-            A la Familia Toxtega Gutiérrez
-          </h2>
+          <h2 class="family-invitation-heading gold-text-glow" id="main-family-title"></h2>
 
           <div class="ornament-line">
             <span>✦</span>
@@ -3072,6 +3070,7 @@
       localStorage.setItem('rsvp_confirmed_msg', msg);
       sessionStorage.setItem('rsvp_confirmed_guest', name);
       sessionStorage.setItem('rsvp_confirmed_status', status);
+      localStorage.setItem('rsvp_confirmed_for_' + encodeURIComponent(name.trim().toLowerCase()), JSON.stringify({ status, guests, msg }));
     } catch (_) {}
 
     // 2. Construir enlace de WhatsApp con el mensaje estructurado
@@ -3207,11 +3206,57 @@
     }
   });
 
-  // Restaurar tarjeta de confirmación si ya se realizó previamente
+  // Restaurar tarjeta de confirmación si ya se realizó previamente para ESTA familia
   (function checkPreviousConfirmation() {
     try {
-      const savedName   = localStorage.getItem('rsvp_confirmed_guest') || sessionStorage.getItem('rsvp_confirmed_guest');
-      const savedStatus = localStorage.getItem('rsvp_confirmed_status') || sessionStorage.getItem('rsvp_confirmed_status');
+      // 1. Si la URL actual está personalizada para una familia específica (guestName):
+      if (guestName) {
+        const specificDataStr = localStorage.getItem('rsvp_confirmed_for_' + encodeURIComponent(guestName.trim().toLowerCase()));
+        const savedGlobalName = localStorage.getItem('rsvp_confirmed_guest');
+        const isExactMatch = savedGlobalName && (savedGlobalName.trim().toLowerCase() === guestName.trim().toLowerCase());
+
+        // Si este enlace es de una familia que NO ha confirmado aún en este navegador, NO restauramos nada
+        if (!specificDataStr && !isExactMatch) {
+          return;
+        }
+
+        let status = 'si';
+        if (specificDataStr) {
+          try {
+            const parsed = JSON.parse(specificDataStr);
+            status = parsed.status || 'si';
+          } catch (_) {}
+        } else {
+          status = localStorage.getItem('rsvp_confirmed_status') || 'si';
+        }
+
+        if (status === 'si') {
+          const formContainer  = document.getElementById('rsvp-form-container');
+          const successSection = document.getElementById('rsvp-success-section');
+          const rsvpInput      = document.getElementById('rsvp-name');
+          const btnWaDirect    = document.getElementById('btn-whatsapp-direct');
+
+          if (rsvpInput) rsvpInput.value = guestName;
+          if (formContainer)  formContainer.style.display  = 'none';
+          if (successSection) successSection.style.display = 'block';
+
+          if (btnWaDirect) {
+            btnWaDirect.href = getStructuredWhatsAppUrl();
+          }
+
+          renderCardForGuest(guestName);
+        } else if (status === 'no') {
+          const formContainer   = document.getElementById('rsvp-form-container');
+          const declinedSection = document.getElementById('rsvp-declined-section');
+          if (formContainer)   formContainer.style.display   = 'none';
+          if (declinedSection) declinedSection.style.display = 'block';
+        }
+        return;
+      }
+
+      // 2. Si la URL es genérica (sin parámetro ?familia=):
+      const savedName   = localStorage.getItem('rsvp_confirmed_guest');
+      const savedStatus = localStorage.getItem('rsvp_confirmed_status');
       if (savedName && savedStatus === 'si') {
         const formContainer  = document.getElementById('rsvp-form-container');
         const successSection = document.getElementById('rsvp-success-section');
