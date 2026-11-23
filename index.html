@@ -277,27 +277,59 @@
   }
 
   .intro-family-box {
-    margin-bottom: 8px;
+    margin: 6px auto 12px;
+    max-width: 520px;
+    padding: 8px 16px;
+    animation: fadeInGuest 1.4s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+  }
+
+  @keyframes fadeInGuest {
+    from {
+      opacity: 0;
+      transform: translateY(12px) scale(0.97);
+    }
+    to {
+      opacity: 1;
+      transform: translateY(0) scale(1);
+    }
   }
 
   .intro-guest-label {
-    font-family: var(--font-sans);
-    font-size: 13px;
-    font-weight: 500;
-    letter-spacing: 3px;
+    font-family: var(--font-heading);
+    font-size: 11px;
+    font-weight: 700;
+    letter-spacing: 3.5px;
     text-transform: uppercase;
-    color: var(--arena);
-    opacity: 0.9;
+    color: var(--oro-sol);
+    display: block;
+    margin-bottom: 6px;
+    opacity: 0.95;
+    text-shadow: 0 2px 6px rgba(0, 0, 0, 0.7);
   }
 
   .intro-guest-name {
     font-family: var(--font-heading);
-    font-size: clamp(22px, 4.5vw, 32px);
+    font-size: clamp(20px, 5.2vw, 32px);
     font-weight: 700;
-    color: var(--oro-brillo);
+    color: var(--marfil);
+    background: linear-gradient(135deg, #fff7db 0%, #ffd768 40%, #dfb15b 75%, #fae39d 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    letter-spacing: 1.5px;
+    text-transform: uppercase;
+    line-height: 1.3;
+    text-shadow: 0 3px 18px rgba(223, 177, 91, 0.45);
+    word-break: break-word;
+  }
+
+  .intro-guest-name.name-long {
+    font-size: clamp(17px, 4.2vw, 24px);
     letter-spacing: 1px;
-    margin-top: 2px;
-    text-shadow: 0 2px 10px rgba(0,0,0,0.7);
+  }
+
+  .intro-guest-name.name-extra-long {
+    font-size: clamp(15px, 3.5vw, 20px);
+    letter-spacing: 0.8px;
   }
 
   /* Nombres de los novios en portada */
@@ -618,6 +650,40 @@
     color: var(--arena);
     letter-spacing: 1.5px;
     opacity: 0.85;
+  }
+
+  /* ================================================================
+     TARJETA DE INVITACIÓN PERSONALIZADA EN PÁGINA PRINCIPAL
+  ================================================================ */
+  .family-dedication-card {
+    text-align: center;
+    animation: fadeInGuest 1.2s ease-out;
+  }
+
+  .family-invitation-heading {
+    font-family: var(--font-heading);
+    font-size: clamp(22px, 5.5vw, 36px);
+    font-weight: 700;
+    letter-spacing: 1.5px;
+    margin: 10px auto 14px;
+    line-height: 1.3;
+    text-transform: uppercase;
+    color: var(--marfil);
+    background: linear-gradient(135deg, #fff7db 0%, #ffd768 40%, #dfb15b 75%, #fae39d 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    text-shadow: 0 3px 18px rgba(223, 177, 91, 0.45);
+    word-break: break-word;
+  }
+
+  .family-invitation-message {
+    font-family: var(--font-body);
+    font-size: clamp(19px, 4.2vw, 22px);
+    font-style: italic;
+    line-height: 1.8;
+    color: var(--marfil-calido);
+    max-width: 560px;
+    margin: 16px auto 6px;
   }
 
   /* ================================================================
@@ -1624,6 +1690,12 @@
       Nuestras Bodas de Plata · 25 Años
     </div>
 
+    <!-- BLOQUE PERSONALIZADO: CON MUCHO CARIÑO PARA LA FAMILIA -->
+    <div id="intro-family-container" class="intro-family-box" style="display:none;">
+      <span class="intro-guest-label">Con mucho cariño para:</span>
+      <div id="guest-display-intro" class="intro-guest-name"></div>
+    </div>
+
     <div class="ornament-line">
       <span>✦</span>
     </div>
@@ -1710,6 +1782,36 @@
           Hotel Hacienda Valladolid · Pueblo Mágico · Yucatán, México
         </p>
       </header>
+
+
+      <!-- INVITACIÓN PERSONALIZADA PARA LA FAMILIA -->
+      <article class="mayan-card family-dedication-card" id="card-family-dedication" style="display:none;">
+        <div class="mayan-fret-top"></div>
+        <div class="mayan-card-border"></div>
+        <div class="corner-glyph corner-tl"></div>
+        <div class="corner-glyph corner-tr"></div>
+        <div class="corner-glyph corner-bl"></div>
+        <div class="corner-glyph corner-br"></div>
+
+        <div style="text-align:center;">
+          <div style="font-size:24px; color:var(--oro-sol); margin-bottom:8px;">✦ 🌿 ✦</div>
+          <span class="section-pretitle">Con el honor de su compañía</span>
+          
+          <h2 class="family-invitation-heading gold-text-glow" id="main-family-title">
+            A la Familia Toxtega Gutiérrez
+          </h2>
+
+          <div class="ornament-line">
+            <span>✦</span>
+          </div>
+
+          <p class="family-invitation-message">
+            Tenemos el honor y la inmensa alegría de invitarlos a ser parte de la celebración de nuestras <strong>Bodas de Plata</strong> y sagrado rito maya. Caminar estos 25 años de amor y bendición ha sido un regalo de Dios, y nada nos haría más felices que compartir este momento tan significativo y sagrado a su lado.
+          </p>
+        </div>
+
+        <div class="mayan-fret-bottom"></div>
+      </article>
 
 
       <!-- 1. MENSAJE DE LOS NOVIOS (BODAS DE PLATA - 25 AÑOS) -->
@@ -1874,6 +1976,13 @@
         </div>
 
         <div class="itinerary-list">
+          <!-- 15:30 H — BIENVENIDA A NUESTROS INVITADOS -->
+          <div class="itinerary-item">
+            <div class="itinerary-dot"></div>
+            <div class="itinerary-time">15:30 H</div>
+            <h3 class="itinerary-title">Bienvenida a nuestros invitados</h3>
+          </div>
+
           <div class="itinerary-item">
             <div class="itinerary-dot"></div>
             <div class="itinerary-time">16:00 HRS</div>
@@ -2477,16 +2586,67 @@
   /* ================================================================
      PERSONALIZACIÓN POR URL (?familia= o ?nombre=)
   ================================================================ */
-  let guestName = CONFIG.DEFAULT_GUEST;
+  let guestName = '';
   (function initGuestParam() {
     const params = new URLSearchParams(window.location.search);
-    const raw = params.get('familia') || params.get('nombre') || params.get('invitado');
-    if (raw) {
-      guestName = raw.trim();
-      const elIntro = document.getElementById('guest-display-intro');
-      if (elIntro) elIntro.textContent = guestName;
-      const rsvpInput = document.getElementById('rsvp-name');
-      if (rsvpInput) rsvpInput.value = guestName;
+    // Soporte para parámetros compatibles: ?familia=, ?nombre=, ?invitado=, ?f=, ?n=
+    const raw = params.get('familia') || params.get('nombre') || params.get('invitado') || params.get('f') || params.get('n');
+    
+    const containerIntro = document.getElementById('intro-family-container');
+    const elIntro = document.getElementById('guest-display-intro');
+    const rsvpInput = document.getElementById('rsvp-name');
+
+    if (raw && raw.trim()) {
+      let clean = raw.trim();
+
+      // Si el parámetro no incluye la palabra "Familia" y viene por familia/f/invitado, la anteponemos elegantemente
+      let formattedFamilyName = clean;
+      const isExplicitNombre = params.has('nombre') || params.has('n');
+      if (!isExplicitNombre && !/^familia\s+/i.test(clean)) {
+        formattedFamilyName = `Familia ${clean}`;
+      }
+
+      guestName = formattedFamilyName;
+
+      // Personalizar y mostrar en la portada
+      if (containerIntro && elIntro) {
+        elIntro.textContent = formattedFamilyName;
+        elIntro.classList.remove('name-long', 'name-extra-long');
+        
+        // Ajuste automático del tamaño de fuente según la longitud del nombre
+        if (formattedFamilyName.length > 34) {
+          elIntro.classList.add('name-extra-long');
+        } else if (formattedFamilyName.length > 22) {
+          elIntro.classList.add('name-long');
+        }
+
+        containerIntro.style.display = 'block';
+      }
+
+      // Personalizar y mostrar en la página principal (Pantalla 2)
+      const cardDedication = document.getElementById('card-family-dedication');
+      const elMainFamilyTitle = document.getElementById('main-family-title');
+      if (cardDedication && elMainFamilyTitle) {
+        let dedicationHeading = formattedFamilyName;
+        if (/^familia\s+/i.test(formattedFamilyName)) {
+          dedicationHeading = `A la ${formattedFamilyName}`;
+        } else if (isExplicitNombre) {
+          dedicationHeading = `A ${formattedFamilyName}`;
+        } else {
+          dedicationHeading = `A la Familia ${formattedFamilyName}`;
+        }
+        elMainFamilyTitle.textContent = dedicationHeading;
+        cardDedication.style.display = 'block';
+      }
+
+      if (rsvpInput) rsvpInput.value = formattedFamilyName;
+    } else {
+      // Si no se identifica una familia en la URL, se muestra la versión genérica limpia sin nombres inventados
+      guestName = '';
+      if (containerIntro) containerIntro.style.display = 'none';
+      const cardDedication = document.getElementById('card-family-dedication');
+      if (cardDedication) cardDedication.style.display = 'none';
+      if (rsvpInput) rsvpInput.value = '';
     }
   })();
 
