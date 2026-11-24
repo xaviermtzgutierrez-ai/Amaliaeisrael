@@ -1274,6 +1274,25 @@
     box-shadow: 0 0 15px rgba(255, 215, 104, 0.3);
   }
 
+  .rsvp-error-box {
+    background: rgba(160, 40, 30, 0.22);
+    border: 1px solid rgba(220, 100, 80, 0.55);
+    border-radius: var(--radius-sm);
+    padding: 12px 14px;
+    margin-bottom: 16px;
+    color: #ffd8cc;
+    font-family: var(--font-sans);
+    font-size: 13.5px;
+    line-height: 1.5;
+    text-align: left;
+  }
+
+  .btn:disabled {
+    opacity: 0.7;
+    cursor: wait;
+    transform: none !important;
+  }
+
   /* Botones principales de acción */
   .btn {
     display: inline-flex;
@@ -2297,10 +2316,17 @@
               </select>
             </div>
 
+            <div class="form-group" id="group-guests-custom" style="display:none;">
+              <label class="form-label" for="rsvp-guests-custom">Cantidad exacta de integrantes de la familia</label>
+              <input type="number" id="rsvp-guests-custom" class="form-input" min="1" step="1" inputmode="numeric" placeholder="Ej. 6">
+            </div>
+
             <div class="form-group">
               <label class="form-label" for="rsvp-msg">Mensaje para Amalia e Israel (opcional)</label>
               <textarea id="rsvp-msg" class="form-textarea" rows="2" placeholder="Dedicatoria o palabras de cariño..."></textarea>
             </div>
+
+            <div id="rsvp-error-box" class="rsvp-error-box" role="alert" style="display:none;"></div>
 
             <button type="submit" id="btn-submit-rsvp" class="btn btn-gold btn-full">
               <svg viewBox="0 0 24 24" fill="currentColor">
@@ -2447,7 +2473,9 @@
     EVENT_DATE:       '2027-01-23T16:30:00',
     RSVP_DEADLINE:    '1 de Diciembre de 2026',
     WHATSAPP_NUMBER:  '5217716995004',
-    GS_SCRIPT_URL:    'https://script.google.com/macros/s/AKfycbyPw15Pf3IpDGUHVX2bBIWEIT3d3RCxo_z3TGOP_Db-eZj_0hxMJtSjoFXYtG70I8np/exec',
+    // URL del Web App de Google Apps Script (despliegue RSVP)
+    GS_SCRIPT_URL:    'https://script.google.com/macros/s/AKfycbw7hjLb4CjUkJxKLntCB66ryQpP3Kq_pmWuXhpINPMyaDIfcHjAYajJddSq2aDe0Bx0_g/exec',
+    RSVP_TIMEOUT_MS:  20000,
     AUDIO_TRACKS:     ['cenote-rhythms-1.mp3', 'cenote-rhythms-2.mp3'],
     DEFAULT_GUEST:    'Familia Invitada'
   });
@@ -2933,16 +2961,75 @@
   }
 
   /**
+   * Obtiene y valida la cantidad exacta de asistentes.
+   * - Si declina: retorna 0.
+   * - Si selecciona "Toda la familia confirmada": exige entero positivo >= 1 sin límite arbitrario.
+   * - Si selecciona 1..5: retorna el entero correspondiente.
+   */
+  function getEffectiveGuestCount() {
+    const statusInput = document.getElementById('rsvp-status');
+    const guestsInput = document.getElementById('rsvp-guests');
+    const customInput = document.getElementById('rsvp-guests-custom');
+
+    const status = statusInput ? statusInput.value : 'si';
+    if (status === 'no') {
+      return { valid: true, count: 0, displayLabel: '0' };
+    }
+
+    const selection = guestsInput ? guestsInput.value : '2';
+    if (selection === 'familia') {
+      const rawCustom = customInput ? String(customInput.value).trim() : '';
+      if (!/^\d+$/.test(rawCustom)) {
+        return {
+          valid: false,
+          count: 0,
+          displayLabel: '',
+          error: 'Por favor indica la cantidad exacta de integrantes de la familia (número entero mayor o igual a 1).'
+        };
+      }
+      const parsed = parseInt(rawCustom, 10);
+      if (!Number.isInteger(parsed) || parsed < 1) {
+        return {
+          valid: false,
+          count: 0,
+          displayLabel: '',
+          error: 'La cantidad de integrantes debe ser al menos 1.'
+        };
+      }
+      return {
+        valid: true,
+        count: parsed,
+        displayLabel: `${parsed} ${parsed === 1 ? 'persona' : 'personas'} (Toda la familia)`
+      };
+    }
+
+    const fixedCount = parseInt(selection, 10);
+    if (!Number.isInteger(fixedCount) || fixedCount < 1) {
+      return {
+        valid: false,
+        count: 0,
+        displayLabel: '',
+        error: 'Selecciona un número válido de asistentes.'
+      };
+    }
+    return {
+      valid: true,
+      count: fixedCount,
+      displayLabel: `${fixedCount} ${fixedCount === 1 ? 'persona' : 'personas'}`
+    };
+  }
+
+  /**
    * Construye el mensaje completo y estructurado para WhatsApp
    */
-  function getStructuredWhatsAppMessage() {
-    const nameInput   = document.getElementById('rsvp-name');
-    const guestsInput = document.getElementById('rsvp-guests');
-    const msgInput    = document.getElementById('rsvp-msg');
+  function getStructuredWhatsAppMessage(overrideName) {
+    const nameInput = document.getElementById('rsvp-name');
+    const msgInput  = document.getElementById('rsvp-msg');
 
-    const name   = (nameInput ? nameInput.value : '').trim() || guestName || CONFIG.DEFAULT_GUEST;
-    const guests = guestsInput ? guestsInput.value : '2';
-    const msg    = msgInput ? msgInput.value.trim() : '';
+    const name       = (overrideName || (nameInput ? nameInput.value : '')).trim() || guestName || CONFIG.DEFAULT_GUEST;
+    const guestInfo  = getEffectiveGuestCount();
+    const guestsText = guestInfo.valid ? guestInfo.displayLabel : '2 personas';
+    const msg        = msgInput ? msgInput.value.trim() : '';
 
     const lines = [
       `¡Hola Amalia e Israel! 🌿✨`,
@@ -2951,7 +3038,7 @@
       ``,
       `• *Familia / Invitado:* ${name}`,
       `• *Asistencia:* ¡Sí asistiremos con mucho honor y alegría!`,
-      `• *Pases / Personas:* ${guests}`,
+      `• *Pases / Personas:* ${guestsText}`,
       `• *Fecha:* Sábado 23 de Enero, 2027 · 16:30 hrs`,
       `• *Lugar:* Hotel Hacienda Valladolid, Yucatán`,
     ];
@@ -2969,8 +3056,8 @@
     return lines.join('\n');
   }
 
-  function getStructuredWhatsAppUrl() {
-    return `https://wa.me/${CONFIG.WHATSAPP_NUMBER}?text=${encodeURIComponent(getStructuredWhatsAppMessage())}`;
+  function getStructuredWhatsAppUrl(overrideName) {
+    return `https://wa.me/${CONFIG.WHATSAPP_NUMBER}?text=${encodeURIComponent(getStructuredWhatsAppMessage(overrideName))}`;
   }
 
   function getDeclineWhatsAppUrl(name, msg) {
@@ -3033,75 +3120,232 @@
   }
   window._renderCardForGuest = renderCardForGuest;
 
+  function showRsvpError(message) {
+    const box = document.getElementById('rsvp-error-box');
+    if (box) {
+      box.textContent = message;
+      box.style.display = 'block';
+    }
+    showToast(message);
+  }
+
+  function clearRsvpError() {
+    const box = document.getElementById('rsvp-error-box');
+    if (box) {
+      box.textContent = '';
+      box.style.display = 'none';
+    }
+  }
+
+  /**
+   * Envía la confirmación a Google Apps Script mediante POST en iframe oculto
+   * y valida la respuesta recibida por postMessage (requestId + source + origin).
+   */
+  function submitRsvpToGoogleSheets(payload) {
+    return new Promise((resolve, reject) => {
+      if (!CONFIG.GS_SCRIPT_URL) {
+        reject(new Error('El servicio de registro en Google Sheets no está configurado.'));
+        return;
+      }
+
+      if (!window.location.origin || window.location.origin === 'null') {
+        reject(new Error('Para registrar la confirmación en Google Sheets, abre la invitación desde su enlace web publicado.'));
+        return;
+      }
+
+      const requestId = 'rsvp_' + Date.now() + '_' + Math.random().toString(36).slice(2, 10);
+      const timeoutMs = CONFIG.RSVP_TIMEOUT_MS || 20000;
+
+      const iframe = document.createElement('iframe');
+      iframe.name = requestId;
+      iframe.style.display = 'none';
+      iframe.setAttribute('aria-hidden', 'true');
+
+      const form = document.createElement('form');
+      form.method = 'POST';
+      form.action = CONFIG.GS_SCRIPT_URL;
+      form.target = requestId;
+      form.style.display = 'none';
+
+      const fields = {
+        requestId: requestId,
+        origin: window.location.origin,
+        familia: payload.familia,
+        respuesta: payload.respuesta,
+        asistentes: String(payload.asistentes),
+        mensaje: payload.mensaje || ''
+      };
+
+      Object.keys(fields).forEach((key) => {
+        const input = document.createElement('input');
+        input.type = 'hidden';
+        input.name = key;
+        input.value = fields[key];
+        form.appendChild(input);
+      });
+
+      let settled = false;
+      let timerId = null;
+
+      function cleanup() {
+        window.removeEventListener('message', onMessage);
+        if (timerId) clearTimeout(timerId);
+        setTimeout(() => {
+          if (form.parentNode) form.parentNode.removeChild(form);
+          if (iframe.parentNode) iframe.parentNode.removeChild(iframe);
+        }, 100);
+      }
+
+      function isFromOurIframe(sourceWin) {
+        if (!sourceWin || !iframe.contentWindow) return false;
+        let cur = sourceWin;
+        for (let i = 0; i < 5; i++) {
+          if (cur === iframe.contentWindow) return true;
+          try {
+            if (!cur.parent || cur.parent === cur) break;
+            cur = cur.parent;
+          } catch (_) {
+            break;
+          }
+        }
+        return false;
+      }
+
+      function onMessage(event) {
+        if (settled) return;
+        if (!isFromOurIframe(event.source)) return;
+        if (!/^https:\/\/([a-z0-9-]+\.)?(script\.google\.com|googleusercontent\.com)$/i.test(event.origin || '')) {
+          return;
+        }
+        const data = event.data;
+        if (!data || typeof data !== 'object' || data.type !== 'KAAM_NIKTE_RSVP_RESPONSE' || data.requestId !== requestId) {
+          return;
+        }
+
+        settled = true;
+        cleanup();
+
+        if (data.ok) {
+          resolve(data);
+        } else {
+          reject(new Error(data.error || 'No fue posible registrar tu confirmación en Google Sheets.'));
+        }
+      }
+
+      window.addEventListener('message', onMessage);
+
+      timerId = setTimeout(() => {
+        if (settled) return;
+        settled = true;
+        cleanup();
+        reject(new Error('Google Sheets no respondió a tiempo. Verifica tu conexión e inténtalo nuevamente.'));
+      }, timeoutMs);
+
+      document.body.appendChild(iframe);
+      document.body.appendChild(form);
+
+      try {
+        form.submit();
+      } catch (submitErr) {
+        settled = true;
+        cleanup();
+        reject(new Error('No se pudo enviar la confirmación al servidor de registro.'));
+      }
+    });
+  }
+
   /**
    * Manejador principal del formulario RSVP:
-   * 1. Valida los datos ingresados
-   * 2. Guarda el registro para recordarlo si vuelve a entrar
-   * 3. Abre de inmediato WhatsApp con los novios
-   * 4. Envía telemetría a Google Apps Script en segundo plano
-   * 5. Muestra la pantalla de confirmación con la tarjeta ceremonial
+   * 1. Identifica la familia a partir del enlace personalizado
+   * 2. Valida los datos ingresados (incluyendo cantidad exacta si elige toda la familia)
+   * 3. Envía la respuesta a Google Apps Script y espera confirmación real
+   * 4. Solo tras confirmar el registro, guarda estado local, abre WhatsApp y muestra la tarjeta
    */
-  function handleRsvpSubmit(e) {
+  async function handleRsvpSubmit(e) {
     e.preventDefault();
+    clearRsvpError();
 
     const nameInput   = document.getElementById('rsvp-name');
     const statusInput = document.getElementById('rsvp-status');
     const guestsInput = document.getElementById('rsvp-guests');
+    const customInput = document.getElementById('rsvp-guests-custom');
     const msgInput    = document.getElementById('rsvp-msg');
+    const btnSubmit   = document.getElementById('btn-submit-rsvp');
 
-    const name   = (nameInput ? nameInput.value : '').trim() || guestName;
-    const status = statusInput ? statusInput.value : 'si';
-    const guests = guestsInput ? guestsInput.value : '2';
-    const msg    = msgInput ? msgInput.value.trim() : '';
+    const inputName      = (nameInput ? nameInput.value : '').trim();
+    const familyToLookup = (guestName || inputName).trim();
+    const status         = statusInput ? statusInput.value : 'si';
+    const msg            = msgInput ? msgInput.value.trim() : '';
+    const isAttending    = (status === 'si');
 
-    if (!name) {
+    if (!familyToLookup) {
       if (nameInput) nameInput.focus();
-      showToast('Por favor escribe tu nombre o el de tu familia.');
+      showRsvpError('Por favor abre tu enlace personalizado o escribe el nombre de tu familia.');
       return;
     }
 
-    const isAttending = (status === 'si');
+    const guestCountInfo = getEffectiveGuestCount();
+    if (!guestCountInfo.valid) {
+      if (customInput) customInput.focus();
+      showRsvpError(guestCountInfo.error);
+      return;
+    }
 
-    // 1. Guardar en almacenamiento para recordar la confirmación permanentemente
+    const originalBtnHtml = btnSubmit ? btnSubmit.innerHTML : '';
+    if (btnSubmit) {
+      btnSubmit.disabled = true;
+      btnSubmit.innerHTML = '<span>Registrando tu confirmación...</span>';
+    }
+
+    let gsResult;
     try {
-      localStorage.setItem('rsvp_confirmed_guest', name);
+      gsResult = await submitRsvpToGoogleSheets({
+        familia: familyToLookup,
+        respuesta: isAttending ? 'CONFIRMA' : 'DECLINA',
+        asistentes: isAttending ? guestCountInfo.count : 0,
+        mensaje: msg
+      });
+    } catch (err) {
+      if (btnSubmit) {
+        btnSubmit.disabled = false;
+        btnSubmit.innerHTML = originalBtnHtml;
+      }
+      showRsvpError(err && err.message ? err.message : 'No se pudo conectar con Google Sheets. Intenta de nuevo.');
+      return;
+    }
+
+    const confirmedName   = (gsResult && gsResult.familia) ? gsResult.familia : familyToLookup;
+    const guestsSelection = guestsInput ? guestsInput.value : '2';
+    const customGuestsVal = customInput ? customInput.value.trim() : '';
+
+    if (nameInput) nameInput.value = confirmedName;
+
+    // 1. Guardar en almacenamiento para recordar la confirmación tras validar en Sheets
+    try {
+      localStorage.setItem('rsvp_confirmed_guest', confirmedName);
       localStorage.setItem('rsvp_confirmed_status', status);
-      localStorage.setItem('rsvp_confirmed_guests', guests);
+      localStorage.setItem('rsvp_confirmed_guests', guestsSelection);
+      localStorage.setItem('rsvp_confirmed_guests_custom', customGuestsVal);
+      localStorage.setItem('rsvp_confirmed_guests_count', String(guestCountInfo.count));
       localStorage.setItem('rsvp_confirmed_msg', msg);
-      sessionStorage.setItem('rsvp_confirmed_guest', name);
+      sessionStorage.setItem('rsvp_confirmed_guest', confirmedName);
       sessionStorage.setItem('rsvp_confirmed_status', status);
-      localStorage.setItem('rsvp_confirmed_for_' + encodeURIComponent(name.trim().toLowerCase()), JSON.stringify({ status, guests, msg }));
+      localStorage.setItem(
+        'rsvp_confirmed_for_' + encodeURIComponent(confirmedName.trim().toLowerCase()),
+        JSON.stringify({
+          status,
+          guests: guestsSelection,
+          customGuests: customGuestsVal,
+          count: guestCountInfo.count,
+          msg
+        })
+      );
     } catch (_) {}
 
     // 2. Construir enlace de WhatsApp con el mensaje estructurado
-    const waUrl = isAttending ? getStructuredWhatsAppUrl() : getDeclineWhatsAppUrl(name, msg);
+    const waUrl = isAttending ? getStructuredWhatsAppUrl(confirmedName) : getDeclineWhatsAppUrl(confirmedName, msg);
 
-    // 3. ¡ABRIR WHATSAPP INMEDIATAMENTE!
-    // Al ser un evento síncrono disparado directamente por el usuario, el navegador jamás lo bloquea
-    const waWin = window.open(waUrl, '_blank');
-    if (!waWin || waWin.closed || typeof waWin.closed === 'undefined') {
-      window.location.href = waUrl;
-    }
-
-    // 4. Registro en segundo plano en Google Sheets (no bloqueante)
-    if (CONFIG.GS_SCRIPT_URL) {
-      const params = new URLSearchParams({
-        action: isAttending ? 'confirm_rsvp' : 'decline_rsvp',
-        familia: name,
-        asistencia: isAttending ? 'SI' : 'NO',
-        pases: guests,
-        mensaje: msg,
-        evento: 'BodaMayaAmaliaIsrael',
-        timestamp: new Date().toISOString()
-      });
-      fetch(`${CONFIG.GS_SCRIPT_URL}?${params.toString()}`, {
-        method: 'GET',
-        mode: 'no-cors',
-        keepalive: true
-      }).catch(() => {});
-    }
-
-    // 5. Actualizar la vista de la invitación
+    // 3. Actualizar la vista de la invitación
     const formContainer = document.getElementById('rsvp-form-container');
     if (formContainer) formContainer.style.display = 'none';
 
@@ -3117,11 +3361,17 @@
       if (btnWaDirect) btnWaDirect.href = waUrl;
 
       // Generar tarjeta ceremonial para tenerla lista
-      renderCardForGuest(name);
+      renderCardForGuest(confirmedName);
     }
 
     const cardRsvp = document.getElementById('card-rsvp');
     if (cardRsvp) cardRsvp.scrollIntoView({ behavior: 'smooth', block: 'start' });
+
+    // 4. Abrir WhatsApp únicamente después de confirmar el registro en Google Sheets
+    const waWin = window.open(waUrl, '_blank');
+    if (!waWin || waWin.closed || typeof waWin.closed === 'undefined') {
+      showToast('Confirmación registrada. Toca el botón de WhatsApp para enviar tu mensaje.');
+    }
   }
 
   // Descarga directa de la tarjeta en PNG
@@ -3165,10 +3415,13 @@
       localStorage.removeItem('rsvp_confirmed_guest');
       localStorage.removeItem('rsvp_confirmed_status');
       localStorage.removeItem('rsvp_confirmed_guests');
+      localStorage.removeItem('rsvp_confirmed_guests_custom');
+      localStorage.removeItem('rsvp_confirmed_guests_count');
       localStorage.removeItem('rsvp_confirmed_msg');
       sessionStorage.removeItem('rsvp_confirmed_guest');
       sessionStorage.removeItem('rsvp_confirmed_status');
     } catch (_) {}
+    clearRsvpError();
 
     const formContainer   = document.getElementById('rsvp-form-container');
     const successSection  = document.getElementById('rsvp-success-section');
@@ -3196,15 +3449,25 @@
   const btnEditDeclined = document.getElementById('btn-edit-declined');
   if (btnEditDeclined) btnEditDeclined.addEventListener('click', resetRsvpView);
 
-  // Si selecciona "No podré asistir", oculta el campo de número de personas
-  document.getElementById('rsvp-status').addEventListener('change', function() {
+  // Controla visibilidad de número de asistentes y cantidad exacta para "Toda la familia confirmada"
+  function updateGuestsFieldVisibility() {
+    const statusEl    = document.getElementById('rsvp-status');
+    const guestsEl    = document.getElementById('rsvp-guests');
     const groupGuests = document.getElementById('group-guests');
-    if (this.value === 'no') {
-      groupGuests.style.display = 'none';
-    } else {
-      groupGuests.style.display = 'block';
-    }
-  });
+    const groupCustom = document.getElementById('group-guests-custom');
+    const customInput = document.getElementById('rsvp-guests-custom');
+
+    const isDeclining = statusEl && statusEl.value === 'no';
+    const isWholeFamily = !isDeclining && guestsEl && guestsEl.value === 'familia';
+
+    if (groupGuests) groupGuests.style.display = isDeclining ? 'none' : 'block';
+    if (groupCustom) groupCustom.style.display = isWholeFamily ? 'block' : 'none';
+    if (customInput) customInput.required = Boolean(isWholeFamily);
+  }
+
+  document.getElementById('rsvp-status').addEventListener('change', updateGuestsFieldVisibility);
+  document.getElementById('rsvp-guests').addEventListener('change', updateGuestsFieldVisibility);
+  updateGuestsFieldVisibility();
 
   // Restaurar tarjeta de confirmación si ya se realizó previamente para ESTA familia
   (function checkPreviousConfirmation() {
@@ -3221,14 +3484,31 @@
         }
 
         let status = 'si';
+        let savedGuests = '2';
+        let savedCustomGuests = '';
+        let savedMsg = '';
         if (specificDataStr) {
           try {
             const parsed = JSON.parse(specificDataStr);
             status = parsed.status || 'si';
+            savedGuests = parsed.guests || '2';
+            savedCustomGuests = parsed.customGuests || '';
+            savedMsg = parsed.msg || '';
           } catch (_) {}
         } else {
           status = localStorage.getItem('rsvp_confirmed_status') || 'si';
+          savedGuests = localStorage.getItem('rsvp_confirmed_guests') || '2';
+          savedCustomGuests = localStorage.getItem('rsvp_confirmed_guests_custom') || '';
+          savedMsg = localStorage.getItem('rsvp_confirmed_msg') || '';
         }
+
+        const guestsSelect = document.getElementById('rsvp-guests');
+        const customInput  = document.getElementById('rsvp-guests-custom');
+        const msgInput     = document.getElementById('rsvp-msg');
+        if (guestsSelect) guestsSelect.value = savedGuests;
+        if (customInput) customInput.value = savedCustomGuests;
+        if (msgInput && savedMsg) msgInput.value = savedMsg;
+        updateGuestsFieldVisibility();
 
         if (status === 'si') {
           const formContainer  = document.getElementById('rsvp-form-container');
@@ -3241,15 +3521,17 @@
           if (successSection) successSection.style.display = 'block';
 
           if (btnWaDirect) {
-            btnWaDirect.href = getStructuredWhatsAppUrl();
+            btnWaDirect.href = getStructuredWhatsAppUrl(guestName);
           }
 
           renderCardForGuest(guestName);
         } else if (status === 'no') {
           const formContainer   = document.getElementById('rsvp-form-container');
           const declinedSection = document.getElementById('rsvp-declined-section');
+          const btnDeclinedWa   = document.getElementById('btn-whatsapp-declined');
           if (formContainer)   formContainer.style.display   = 'none';
           if (declinedSection) declinedSection.style.display = 'block';
+          if (btnDeclinedWa)   btnDeclinedWa.href = getDeclineWhatsAppUrl(guestName, savedMsg);
         }
         return;
       }
