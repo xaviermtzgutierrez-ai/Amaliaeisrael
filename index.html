@@ -1663,6 +1663,352 @@
     opacity: 1;
     color: var(--oro-brillo);
   }
+
+  /* ================================================================
+     GALERÍA FOTOGRÁFICA CEREMONIAL K'AAM NIKTE' (POST-CUENTA REGRESIVA)
+  ================================================================ */
+  .gallery-card {
+    text-align: center;
+    animation: fadeInGuest 0.9s ease-out;
+  }
+
+  .gallery-info-stack {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+    margin: 18px 0 22px;
+    text-align: left;
+  }
+
+  .gallery-info-box {
+    background: rgba(8, 26, 20, 0.85);
+    border: 1px solid rgba(223, 177, 91, 0.38);
+    border-radius: var(--radius-sm);
+    padding: 14px 16px;
+    font-family: var(--font-sans);
+    font-size: 13.5px;
+    line-height: 1.6;
+    color: var(--marfil-calido);
+  }
+
+  .gallery-info-box strong {
+    color: var(--oro-sol);
+    font-family: var(--font-heading);
+    font-size: 12px;
+    letter-spacing: 1.4px;
+    text-transform: uppercase;
+    display: block;
+    margin-bottom: 4px;
+  }
+
+  .gallery-storage-box {
+    background: rgba(6, 20, 15, 0.9);
+    border: 1px solid rgba(223, 177, 91, 0.35);
+    border-radius: var(--radius-sm);
+    padding: 12px 16px;
+    margin-bottom: 20px;
+    text-align: left;
+  }
+
+  .gallery-storage-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 10px;
+    font-family: var(--font-sans);
+    font-size: 12px;
+    color: var(--arena);
+    margin-bottom: 8px;
+  }
+
+  .gallery-storage-bar-bg {
+    width: 100%;
+    height: 8px;
+    background: rgba(255, 255, 255, 0.08);
+    border-radius: var(--radius-pill);
+    overflow: hidden;
+  }
+
+  .gallery-storage-bar-fill {
+    height: 100%;
+    width: 0%;
+    background: var(--grad-oro);
+    border-radius: var(--radius-pill);
+    transition: width 0.5s ease;
+  }
+
+  .gallery-upload-panel {
+    background: rgba(10, 30, 23, 0.78);
+    border: 1.5px dashed rgba(223, 177, 91, 0.5);
+    border-radius: var(--radius-md);
+    padding: 22px 16px;
+    margin-bottom: 24px;
+    transition: border-color 0.3s ease, background 0.3s ease;
+  }
+
+  .gallery-upload-panel.drag-over {
+    border-color: var(--oro-sol);
+    background: rgba(20, 56, 44, 0.85);
+  }
+
+  .gallery-upload-actions {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 10px;
+    margin-top: 12px;
+  }
+
+  .gallery-btn-compact {
+    padding: 11px 22px;
+    font-size: 12px;
+    letter-spacing: 1.5px;
+  }
+
+  .gallery-queue-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(115px, 1fr));
+    gap: 12px;
+    margin-top: 18px;
+    text-align: left;
+  }
+
+  .gallery-queue-item {
+    position: relative;
+    background: rgba(6, 18, 14, 0.9);
+    border: 1px solid rgba(223, 177, 91, 0.35);
+    border-radius: var(--radius-sm);
+    overflow: hidden;
+    padding: 6px;
+  }
+
+  .gallery-queue-thumb {
+    width: 100%;
+    aspect-ratio: 1 / 1;
+    object-fit: cover;
+    border-radius: 4px;
+    display: block;
+  }
+
+  .gallery-queue-remove {
+    position: absolute;
+    top: 8px;
+    right: 8px;
+    width: 24px;
+    height: 24px;
+    border-radius: 50%;
+    border: 1px solid var(--oro-maya);
+    background: rgba(5, 19, 15, 0.88);
+    color: var(--oro-brillo);
+    font-size: 12px;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+  .gallery-queue-status {
+    font-family: var(--font-sans);
+    font-size: 11px;
+    color: var(--arena);
+    margin-top: 6px;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+  }
+
+  .gallery-queue-status.ok { color: #7ae5b2; }
+  .gallery-queue-status.err { color: #ffb4a2; }
+
+  .gallery-progress-wrap {
+    margin-top: 14px;
+    text-align: left;
+    font-family: var(--font-sans);
+    font-size: 12.5px;
+    color: var(--oro-sol);
+  }
+
+  /* Grid de la galería pública */
+  .gallery-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 16px;
+    margin-top: 22px;
+  }
+
+  /* Marcos ornamentales mesoamericanos (sin alterar la fotografía original) */
+  .mayan-photo-frame {
+    position: relative;
+    padding: 10px;
+    border-radius: 10px;
+    cursor: pointer;
+    transition: transform 0.35s cubic-bezier(0.16, 1, 0.3, 1), box-shadow 0.35s ease;
+    background: rgba(9, 27, 21, 0.95);
+    box-shadow: 0 10px 24px rgba(0, 0, 0, 0.65);
+  }
+
+  .mayan-photo-frame:hover {
+    transform: translateY(-4px) scale(1.015);
+    box-shadow: 0 16px 34px rgba(0, 0, 0, 0.8), 0 0 18px rgba(223, 177, 91, 0.35);
+  }
+
+  .mayan-photo-frame::before,
+  .mayan-photo-frame::after {
+    content: "";
+    position: absolute;
+    width: 14px;
+    height: 14px;
+    pointer-events: none;
+    z-index: 2;
+  }
+
+  .mayan-photo-frame::before {
+    top: 4px;
+    left: 4px;
+    border-top: 2px solid var(--oro-sol);
+    border-left: 2px solid var(--oro-sol);
+  }
+
+  .mayan-photo-frame::after {
+    bottom: 4px;
+    right: 4px;
+    border-bottom: 2px solid var(--oro-sol);
+    border-right: 2px solid var(--oro-sol);
+  }
+
+  /* 6 variantes estéticas de marcos */
+  .mayan-photo-frame.frame-0 {
+    border: 2px solid var(--oro-maya);
+    background: linear-gradient(145deg, #163d30, #091d16);
+  }
+  .mayan-photo-frame.frame-1 {
+    border: 2px double var(--oro-sol);
+    background: linear-gradient(145deg, #214938, #0d241c);
+  }
+  .mayan-photo-frame.frame-2 {
+    border: 2px solid #b58d46;
+    box-shadow: inset 0 0 0 3px rgba(158, 119, 50, 0.35), 0 10px 24px rgba(0,0,0,0.65);
+    background: linear-gradient(145deg, #1d2d28, #0b1613);
+  }
+  .mayan-photo-frame.frame-3 {
+    border: 2px solid #d49b4b;
+    background: linear-gradient(145deg, #2c3e26, #0d1d13);
+  }
+  .mayan-photo-frame.frame-4 {
+    border: 2px solid #388f72;
+    box-shadow: inset 0 0 0 2px rgba(223, 177, 91, 0.5), 0 10px 24px rgba(0,0,0,0.65);
+    background: linear-gradient(145deg, #123c31, #071914);
+  }
+  .mayan-photo-frame.frame-5 {
+    border: 2px solid var(--oro-champana);
+    background: linear-gradient(145deg, #2a2417, #0c1914);
+  }
+
+  .mayan-photo-inner {
+    position: relative;
+    border-radius: 5px;
+    overflow: hidden;
+    background: #06130f;
+    aspect-ratio: 1 / 1;
+    border: 1px solid rgba(223, 177, 91, 0.3);
+  }
+
+  .mayan-photo-inner img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+  }
+
+  .mayan-photo-meta {
+    margin-top: 7px;
+    font-family: var(--font-sans);
+    font-size: 11px;
+    color: var(--arena);
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+  }
+
+  /* Lightbox ceremonial */
+  .gallery-lightbox {
+    position: fixed;
+    inset: 0;
+    z-index: 3000;
+    background: rgba(4, 14, 11, 0.94);
+    backdrop-filter: blur(10px);
+    display: none;
+    align-items: center;
+    justify-content: center;
+    padding: 20px;
+  }
+
+  .gallery-lightbox.open {
+    display: flex;
+  }
+
+  .lightbox-content {
+    position: relative;
+    max-width: 92vw;
+    max-height: 90vh;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 12px;
+  }
+
+  .lightbox-img {
+    max-width: 88vw;
+    max-height: 76vh;
+    object-fit: contain;
+    border-radius: 8px;
+    border: 2px solid var(--oro-maya);
+    box-shadow: 0 20px 50px rgba(0, 0, 0, 0.9);
+    background: #05130f;
+  }
+
+  .lightbox-caption {
+    font-family: var(--font-sans);
+    font-size: 13px;
+    color: var(--oro-brillo);
+    text-align: center;
+  }
+
+  .lightbox-close,
+  .lightbox-nav {
+    position: fixed;
+    background: rgba(10, 29, 23, 0.9);
+    border: 1px solid var(--oro-maya);
+    color: var(--oro-sol);
+    border-radius: 50%;
+    width: 42px;
+    height: 42px;
+    font-size: 20px;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: transform 0.2s ease, background 0.2s ease;
+  }
+
+  .lightbox-close:hover,
+  .lightbox-nav:hover {
+    background: var(--oro-maya);
+    color: var(--jade-obsidiana);
+    transform: scale(1.08);
+  }
+
+  .lightbox-close { top: 18px; right: 18px; }
+  .lightbox-prev { left: 16px; top: 50%; transform: translateY(-50%); }
+  .lightbox-next { right: 16px; top: 50%; transform: translateY(-50%); }
+
+  @media (max-width: 720px) {
+    .gallery-grid { grid-template-columns: repeat(2, 1fr); gap: 12px; }
+  }
+
+  @media (max-width: 420px) {
+    .gallery-grid { grid-template-columns: 1fr; }
+  }
   </style>
 </head>
 
@@ -1829,6 +2175,81 @@
 
         <div class="mayan-fret-bottom"></div>
       </article>
+
+
+      <!-- GALERÍA FOTOGRÁFICA K'AAM NIKTE' (SE ACTIVA AUTOMÁTICAMENTE AL LLEGAR A CERO EL CONTADOR) -->
+      <section class="mayan-card gallery-card" id="gallery-experience" style="display:none;" aria-label="Galería Fotográfica K'aam Nikte'">
+        <div class="mayan-fret-top"></div>
+        <div class="mayan-card-border"></div>
+        <div class="corner-glyph corner-tl"></div>
+        <div class="corner-glyph corner-tr"></div>
+        <div class="corner-glyph corner-bl"></div>
+        <div class="corner-glyph corner-br"></div>
+
+        <span class="section-pretitle">Memorias del Enlace Sagrado</span>
+        <h2 class="section-title gold-text-glow">Galería Fotográfica K'aam Nikte'</h2>
+        <div class="ornament-line"><span>✦</span></div>
+
+        <div class="gallery-info-stack">
+          <div class="gallery-info-box">
+            <strong>Disponibilidad de almacenamiento</strong>
+            ¡Comparte tus recuerdos con nosotros! Puedes subir tus fotografías a nuestra galería. El espacio disponible para recibir imágenes es de hasta 10 GB. Si no puedes subir una fotografía, puede ser porque se ha alcanzado el límite de almacenamiento permitido.
+          </div>
+          <div class="gallery-info-box">
+            <strong>Formatos permitidos</strong>
+            Puedes compartir fotografías en formato JPG, JPEG, PNG o WEBP. Por el momento, nuestra galería recibe únicamente imágenes; no se permiten videos.
+          </div>
+        </div>
+
+        <div class="gallery-storage-box" id="gallery-storage-box">
+          <div class="gallery-storage-header">
+            <span>Espacio ocupado en la galería</span>
+            <span id="gallery-storage-text">Consultando almacenamiento...</span>
+          </div>
+          <div class="gallery-storage-bar-bg">
+            <div class="gallery-storage-bar-fill" id="gallery-storage-fill"></div>
+          </div>
+        </div>
+
+        <div class="gallery-upload-panel" id="gallery-dropzone">
+          <p style="font-family:var(--font-body); font-size:19px; font-style:italic; color:var(--marfil-calido); margin-bottom:6px;">
+            Selecciona tus fotografías de la celebración para guardarlas en nuestro álbum oficial.
+          </p>
+          <input type="file" id="gallery-file-input" accept=".jpg,.jpeg,.png,.webp,image/jpeg,image/png,image/webp" multiple style="display:none;">
+          <div class="gallery-upload-actions">
+            <button type="button" id="btn-gallery-select" class="btn btn-outline-gold gallery-btn-compact">
+              Seleccionar fotografías
+            </button>
+            <button type="button" id="btn-gallery-upload" class="btn btn-gold gallery-btn-compact" style="display:none;">
+              Subir a la galería
+            </button>
+          </div>
+
+          <div id="gallery-upload-error" class="rsvp-error-box" style="display:none; margin-top:14px;" role="alert"></div>
+          <div id="gallery-upload-progress" class="gallery-progress-wrap" style="display:none;"></div>
+          <div id="gallery-queue-grid" class="gallery-queue-grid"></div>
+        </div>
+
+        <div style="display:flex; justify-content:space-between; align-items:center; flex-wrap:wrap; gap:10px; margin-top:10px;">
+          <span class="section-pretitle" style="margin-bottom:0;" id="gallery-count-label">Álbum de recuerdos</span>
+          <button type="button" id="btn-gallery-refresh" class="btn btn-outline-gold gallery-btn-compact" style="padding:7px 14px; font-size:11px;">
+            Actualizar galería
+          </button>
+        </div>
+
+        <div id="gallery-loading" class="card-loading-indicator" style="margin-top:16px;">
+          <div class="card-spinner"></div>
+          <span>Cargando recuerdos desde Google Drive...</span>
+        </div>
+
+        <div id="gallery-empty" style="display:none; padding:26px 12px; font-family:var(--font-body); font-size:19px; font-style:italic; color:var(--arena);">
+          Aún no hay fotografías en el álbum. ¡Sé el primero en compartir un recuerdo!
+        </div>
+
+        <div id="gallery-grid" class="gallery-grid"></div>
+
+        <div class="mayan-fret-bottom"></div>
+      </section>
 
 
       <!-- 1. MENSAJE DE LOS NOVIOS (BODAS DE PLATA - 25 AÑOS) -->
@@ -2460,6 +2881,17 @@
     </div><!-- /main-container -->
   </main>
 
+  <!-- Lightbox ceremonial para vista ampliada de fotografías -->
+  <div id="gallery-lightbox" class="gallery-lightbox" role="dialog" aria-modal="true" aria-label="Vista ampliada de fotografía">
+    <button type="button" id="lightbox-close" class="lightbox-close" aria-label="Cerrar vista ampliada">✕</button>
+    <button type="button" id="lightbox-prev" class="lightbox-nav lightbox-prev" aria-label="Fotografía anterior">‹</button>
+    <div class="lightbox-content">
+      <img id="lightbox-img" class="lightbox-img" alt="Fotografía de la galería K'aam Nikte'">
+      <div id="lightbox-caption" class="lightbox-caption"></div>
+    </div>
+    <button type="button" id="lightbox-next" class="lightbox-nav lightbox-next" aria-label="Siguiente fotografía">›</button>
+  </div>
+
 
   <!-- ===========================================================
        SCRIPTS: AUDIO ALEATORIO, PARTICULAS, APERTURA Y UTILIDADES
@@ -2473,10 +2905,12 @@
     EVENT_DATE:       '2027-01-23T16:30:00',
     RSVP_DEADLINE:    '1 de Diciembre de 2026',
     WHATSAPP_NUMBER:  '5217716995004',
-    // URL del Web App de Google Apps Script (despliegue RSVP)
-    GS_SCRIPT_URL:    'https://script.google.com/macros/s/AKfycbw7hjLb4CjUkJxKLntCB66ryQpP3Kq_pmWuXhpINPMyaDIfcHjAYajJddSq2aDe0Bx0_g/exec',
-    RSVP_TIMEOUT_MS:  20000,
-    AUDIO_TRACKS:     ['cenote-rhythms-1.mp3', 'cenote-rhythms-2.mp3'],
+    // URL del Web App de Google Apps Script (despliegue RSVP y Galería)
+    GS_SCRIPT_URL:            'https://script.google.com/macros/s/AKfycbw7hjLb4CjUkJxKLntCB66ryQpP3Kq_pmWuXhpINPMyaDIfcHjAYajJddSq2aDe0Bx0_g/exec',
+    RSVP_TIMEOUT_MS:          20000,
+    GALLERY_UPLOAD_TIMEOUT_MS: 60000,
+    GALLERY_MAX_BYTES:        10 * 1024 * 1024 * 1024,
+    AUDIO_TRACKS:             ['cenote-rhythms-1.mp3', 'cenote-rhythms-2.mp3'],
     DEFAULT_GUEST:    'Familia Invitada'
   });
 
@@ -2732,8 +3166,11 @@
   })();
 
   /* ================================================================
-     CUENTA REGRESIVA EN VIVO
+     CUENTA REGRESIVA EN VIVO & TRANSICIÓN AUTOMÁTICA A GALERÍA
   ================================================================ */
+  let countdownIntervalId = null;
+  let galleryActivated    = false;
+
   function initCountdown() {
     const target = new Date(CONFIG.EVENT_DATE).getTime();
     const elD = document.getElementById('cd-days');
@@ -2748,6 +3185,14 @@
       if (diff <= 0) {
         if (elD) elD.textContent = '000';
         if (elH) elH.textContent = elM.textContent = elS.textContent = '00';
+        if (countdownIntervalId) {
+          clearInterval(countdownIntervalId);
+          countdownIntervalId = null;
+        }
+        if (!galleryActivated) {
+          const isInitialZero = (now - target) > 2500;
+          activateGalleryExperience(!isInitialZero);
+        }
         return;
       }
 
@@ -2763,7 +3208,9 @@
     }
 
     update();
-    setInterval(update, 1000);
+    if (!countdownIntervalId && Date.now() < target) {
+      countdownIntervalId = setInterval(update, 1000);
+    }
   }
 
   /* ================================================================
@@ -3561,6 +4008,514 @@
         if (declinedSection) declinedSection.style.display = 'block';
       }
     } catch (_) {}
+  })();
+
+  /* ================================================================
+     GALERÍA FOTOGRÁFICA K'AAM NIKTE' (GOOGLE DRIVE + APPS SCRIPT)
+  ================================================================ */
+  const ALLOWED_GALLERY_EXTS  = ['jpg', 'jpeg', 'png', 'webp'];
+  const ALLOWED_GALLERY_MIMES = ['image/jpeg', 'image/png', 'image/webp'];
+
+  let galleryPhotos        = [];
+  let galleryQueue         = [];
+  let galleryStorage       = { usedBytes: 0, limitBytes: CONFIG.GALLERY_MAX_BYTES, remainingBytes: CONFIG.GALLERY_MAX_BYTES, percentUsed: 0 };
+  let galleryStorageLoaded = false;
+  let galleryUploading     = false;
+  let lightboxIndex        = 0;
+
+  function activateGalleryExperience(shouldScroll) {
+    if (galleryActivated) return;
+    galleryActivated = true;
+
+    const gallerySection = document.getElementById('gallery-experience');
+    const countdownCard  = document.getElementById('card-countdown');
+    if (countdownCard) countdownCard.style.display = 'none';
+    if (gallerySection) {
+      gallerySection.style.display = 'block';
+      if (shouldScroll) {
+        gallerySection.scrollIntoView({ behavior: 'smooth', block: 'start' });
+      }
+    }
+    loadGalleryFromDrive();
+  }
+
+  function formatBytes(bytes) {
+    const val = Number(bytes) || 0;
+    if (val < 1024) return val + ' B';
+    if (val < 1024 * 1024) return (val / 1024).toFixed(1) + ' KB';
+    if (val < 1024 * 1024 * 1024) return (val / (1024 * 1024)).toFixed(2) + ' MB';
+    return (val / (1024 * 1024 * 1024)).toFixed(2) + ' GB';
+  }
+
+  function updateGalleryStorageUI(storage) {
+    if (!storage) return;
+    galleryStorage = storage;
+    galleryStorageLoaded = true;
+
+    const textEl = document.getElementById('gallery-storage-text');
+    const fillEl = document.getElementById('gallery-storage-fill');
+    if (textEl) {
+      textEl.textContent = `${formatBytes(storage.usedBytes)} / 10 GB (${formatBytes(storage.remainingBytes)} disponibles)`;
+    }
+    if (fillEl) {
+      fillEl.style.width = `${Math.min(100, Math.max(0, Number(storage.percentUsed) || 0))}%`;
+    }
+  }
+
+  function showGalleryError(msg) {
+    const box = document.getElementById('gallery-upload-error');
+    if (box) {
+      box.textContent = msg;
+      box.style.display = 'block';
+    }
+  }
+
+  function clearGalleryError() {
+    const box = document.getElementById('gallery-upload-error');
+    if (box) {
+      box.textContent = '';
+      box.style.display = 'none';
+    }
+  }
+
+  async function inspectImageMagicBytes(file) {
+    const slice = file.slice(0, 12);
+    const buf = await slice.arrayBuffer();
+    const b = new Uint8Array(buf);
+    if (b.length < 12) return null;
+    if (b[0] === 0xFF && b[1] === 0xD8 && b[2] === 0xFF) return 'image/jpeg';
+    if (b[0] === 0x89 && b[1] === 0x50 && b[2] === 0x4E && b[3] === 0x47) return 'image/png';
+    if (b[0] === 0x52 && b[1] === 0x49 && b[2] === 0x46 && b[3] === 0x46 &&
+        b[8] === 0x57 && b[9] === 0x45 && b[10] === 0x42 && b[11] === 0x50) return 'image/webp';
+    return null;
+  }
+
+  function readFileAsDataUrl(file) {
+    return new Promise((resolve, reject) => {
+      const reader = new FileReader();
+      reader.onload = () => resolve(String(reader.result || ''));
+      reader.onerror = () => reject(new Error('No fue posible leer la fotografía seleccionada.'));
+      reader.readAsDataURL(file);
+    });
+  }
+
+  function renderGalleryQueue() {
+    const grid = document.getElementById('gallery-queue-grid');
+    const btnUpload = document.getElementById('btn-gallery-upload');
+    if (!grid) return;
+
+    grid.innerHTML = '';
+    galleryQueue.forEach((item, idx) => {
+      const card = document.createElement('div');
+      card.className = 'gallery-queue-item';
+
+      const img = document.createElement('img');
+      img.className = 'gallery-queue-thumb';
+      img.src = item.previewUrl;
+      img.alt = item.file.name;
+      card.appendChild(img);
+
+      if (!galleryUploading && item.status !== 'ok') {
+        const rm = document.createElement('button');
+        rm.type = 'button';
+        rm.className = 'gallery-queue-remove';
+        rm.textContent = '✕';
+        rm.title = 'Retirar fotografía';
+        rm.addEventListener('click', () => {
+          URL.revokeObjectURL(item.previewUrl);
+          galleryQueue.splice(idx, 1);
+          renderGalleryQueue();
+        });
+        card.appendChild(rm);
+      }
+
+      const st = document.createElement('div');
+      st.className = 'gallery-queue-status' + (item.status === 'ok' ? ' ok' : item.status === 'err' ? ' err' : '');
+      st.textContent = item.statusText || `${item.file.name} (${formatBytes(item.file.size)})`;
+      card.appendChild(st);
+
+      grid.appendChild(card);
+    });
+
+    const pendingCount = galleryQueue.filter(q => q.status === 'pending' || q.status === 'err').length;
+    if (btnUpload) {
+      btnUpload.style.display = pendingCount > 0 ? 'inline-flex' : 'none';
+      btnUpload.disabled = galleryUploading;
+    }
+  }
+
+  async function handleGalleryFilesSelected(fileList) {
+    clearGalleryError();
+    if (!fileList || !fileList.length) return;
+
+    const rejected = [];
+    for (let i = 0; i < fileList.length; i++) {
+      const file = fileList[i];
+      const extMatch = (file.name || '').match(/\.([a-zA-Z0-9]+)$/);
+      const ext = extMatch ? extMatch[1].toLowerCase() : '';
+      const mime = (file.type || '').toLowerCase();
+
+      if (!ALLOWED_GALLERY_EXTS.includes(ext) || !ALLOWED_GALLERY_MIMES.includes(mime)) {
+        rejected.push(`${file.name}: solo se permiten fotografías JPG, JPEG, PNG o WEBP (no videos ni otros archivos).`);
+        continue;
+      }
+
+      const realMime = await inspectImageMagicBytes(file);
+      if (!realMime) {
+        rejected.push(`${file.name}: el contenido real del archivo no corresponde a una imagen JPG, PNG o WEBP válida.`);
+        continue;
+      }
+
+      const dupKey = `${file.name}__${file.size}__${file.lastModified}`;
+      if (galleryQueue.some(q => q.dupKey === dupKey)) {
+        continue;
+      }
+
+      galleryQueue.push({
+        file,
+        realMime,
+        dupKey,
+        previewUrl: URL.createObjectURL(file),
+        status: 'pending',
+        statusText: `Lista (${formatBytes(file.size)})`
+      });
+    }
+
+    if (rejected.length > 0) {
+      showGalleryError(rejected.join(' '));
+    }
+    renderGalleryQueue();
+  }
+
+  function uploadSinglePhotoToDrive(item) {
+    return new Promise(async (resolve, reject) => {
+      if (!window.location.origin || window.location.origin === 'null') {
+        reject(new Error('Abre la invitación desde su enlace web publicado para subir fotografías.'));
+        return;
+      }
+
+      let dataUrl;
+      try {
+        dataUrl = await readFileAsDataUrl(item.file);
+      } catch (e) {
+        reject(e);
+        return;
+      }
+
+      const requestId = 'gal_' + Date.now() + '_' + Math.random().toString(36).slice(2, 10);
+      const timeoutMs = CONFIG.GALLERY_UPLOAD_TIMEOUT_MS || 60000;
+
+      const iframe = document.createElement('iframe');
+      iframe.name = requestId;
+      iframe.style.display = 'none';
+      iframe.setAttribute('aria-hidden', 'true');
+
+      const form = document.createElement('form');
+      form.method = 'POST';
+      form.action = CONFIG.GS_SCRIPT_URL;
+      form.target = requestId;
+      form.style.display = 'none';
+
+      const fields = {
+        action: 'upload_photo',
+        requestId: requestId,
+        origin: window.location.origin,
+        familia: guestName || (document.getElementById('rsvp-name') && document.getElementById('rsvp-name').value.trim()) || CONFIG.DEFAULT_GUEST,
+        fileName: item.file.name,
+        mimeType: item.realMime || item.file.type,
+        fileData: dataUrl
+      };
+
+      Object.keys(fields).forEach((k) => {
+        const input = document.createElement('input');
+        input.type = 'hidden';
+        input.name = k;
+        input.value = fields[k];
+        form.appendChild(input);
+      });
+
+      let settled = false;
+      let timerId = null;
+
+      function cleanup() {
+        window.removeEventListener('message', onMessage);
+        if (timerId) clearTimeout(timerId);
+        setTimeout(() => {
+          if (form.parentNode) form.parentNode.removeChild(form);
+          if (iframe.parentNode) iframe.parentNode.removeChild(iframe);
+        }, 120);
+      }
+
+      function isFromGalleryIframe(sourceWin) {
+        if (!sourceWin || !iframe.contentWindow) return false;
+        let cur = sourceWin;
+        for (let i = 0; i < 5; i++) {
+          if (cur === iframe.contentWindow) return true;
+          try {
+            if (!cur.parent || cur.parent === cur) break;
+            cur = cur.parent;
+          } catch (_) { break; }
+        }
+        return false;
+      }
+
+      function onMessage(event) {
+        if (settled) return;
+        if (!isFromGalleryIframe(event.source)) return;
+        if (!/^https:\/\/([a-z0-9-]+\.)?(script\.google\.com|googleusercontent\.com)$/i.test(event.origin || '')) return;
+        const data = event.data;
+        if (!data || typeof data !== 'object' || data.type !== 'KAAM_NIKTE_GALLERY_UPLOAD_RESPONSE' || data.requestId !== requestId) return;
+
+        settled = true;
+        cleanup();
+        if (data.storage) updateGalleryStorageUI(data.storage);
+
+        if (data.ok) {
+          resolve(data);
+        } else {
+          reject(new Error(data.error || 'No fue posible guardar la fotografía en Google Drive.'));
+        }
+      }
+
+      window.addEventListener('message', onMessage);
+      timerId = setTimeout(() => {
+        if (settled) return;
+        settled = true;
+        cleanup();
+        reject(new Error('Tiempo de espera agotado al subir la fotografía. Inténtalo nuevamente.'));
+      }, timeoutMs);
+
+      document.body.appendChild(iframe);
+      document.body.appendChild(form);
+      try {
+        form.submit();
+      } catch (_) {
+        settled = true;
+        cleanup();
+        reject(new Error('No se pudo enviar la fotografía al servidor.'));
+      }
+    });
+  }
+
+  async function startGalleryUploadQueue() {
+    if (galleryUploading) return;
+    clearGalleryError();
+
+    const pending = galleryQueue.filter(q => q.status === 'pending' || q.status === 'err');
+    if (pending.length === 0) return;
+
+    const totalNewBytes = pending.reduce((acc, q) => acc + (q.file.size || 0), 0);
+    if (galleryStorageLoaded && totalNewBytes > galleryStorage.remainingBytes) {
+      showGalleryError('El tamaño de las fotografías seleccionadas supera el espacio disponible en el límite de 10 GB.');
+      return;
+    }
+
+    galleryUploading = true;
+    renderGalleryQueue();
+
+    const progressEl = document.getElementById('gallery-upload-progress');
+    if (progressEl) progressEl.style.display = 'block';
+
+    let successCount = 0;
+    const errors = [];
+
+    for (let i = 0; i < pending.length; i++) {
+      const item = pending[i];
+      item.status = 'uploading';
+      item.statusText = `Subiendo (${i + 1} de ${pending.length})...`;
+      if (progressEl) {
+        progressEl.textContent = `Subiendo fotografía ${i + 1} de ${pending.length}: ${item.file.name}`;
+      }
+      renderGalleryQueue();
+
+      try {
+        const res = await uploadSinglePhotoToDrive(item);
+        item.status = 'ok';
+        item.statusText = res.duplicate ? 'Ya estaba en el álbum ✓' : 'Guardada en Drive ✓';
+        successCount++;
+      } catch (err) {
+        item.status = 'err';
+        const msg = (err && err.message) ? err.message : 'Error al subir';
+        item.statusText = msg;
+        errors.push(`${item.file.name}: ${msg}`);
+      }
+      renderGalleryQueue();
+    }
+
+    galleryUploading = false;
+    if (progressEl) {
+      progressEl.textContent = successCount > 0
+        ? `Proceso finalizado: ${successCount} fotografía(s) confirmada(s) en Google Drive.`
+        : '';
+      if (successCount === 0) progressEl.style.display = 'none';
+    }
+    if (errors.length > 0) {
+      showGalleryError(errors.join(' | '));
+    }
+    if (successCount > 0) {
+      showToast(`¡${successCount} fotografía(s) guardada(s) en la galería! ✨`);
+      await loadGalleryFromDrive();
+    }
+    renderGalleryQueue();
+  }
+
+  async function loadGalleryFromDrive() {
+    const loadingEl = document.getElementById('gallery-loading');
+    const emptyEl   = document.getElementById('gallery-empty');
+    const gridEl    = document.getElementById('gallery-grid');
+    const countEl   = document.getElementById('gallery-count-label');
+
+    if (loadingEl) loadingEl.style.display = 'flex';
+    if (emptyEl) emptyEl.style.display = 'none';
+
+    try {
+      const resp = await fetch(`${CONFIG.GS_SCRIPT_URL}?action=gallery_list`);
+      const data = await resp.json();
+      if (!data || !data.ok) {
+        throw new Error((data && data.error) || 'Error al consultar la galería.');
+      }
+
+      if (data.storage) updateGalleryStorageUI(data.storage);
+      galleryPhotos = Array.isArray(data.photos) ? data.photos : [];
+      if (countEl) {
+        countEl.textContent = `Álbum de recuerdos (${galleryPhotos.length})`;
+      }
+      renderGalleryGrid();
+    } catch (err) {
+      if (emptyEl) {
+        emptyEl.style.display = 'block';
+        emptyEl.textContent = 'No fue posible cargar las fotografías en este momento. Intenta actualizar la galería.';
+      }
+    } finally {
+      if (loadingEl) loadingEl.style.display = 'none';
+    }
+  }
+
+  function renderGalleryGrid() {
+    const gridEl  = document.getElementById('gallery-grid');
+    const emptyEl = document.getElementById('gallery-empty');
+    if (!gridEl) return;
+
+    gridEl.innerHTML = '';
+    if (!galleryPhotos || galleryPhotos.length === 0) {
+      if (emptyEl) emptyEl.style.display = 'block';
+      return;
+    }
+    if (emptyEl) emptyEl.style.display = 'none';
+
+    galleryPhotos.forEach((photo, idx) => {
+      const frame = document.createElement('div');
+      frame.className = `mayan-photo-frame frame-${idx % 6}`;
+      frame.setAttribute('role', 'button');
+      frame.setAttribute('tabindex', '0');
+      frame.setAttribute('aria-label', `Ver fotografía de ${photo.familia || 'Invitado'}`);
+
+      const inner = document.createElement('div');
+      inner.className = 'mayan-photo-inner';
+
+      const img = document.createElement('img');
+      img.loading = 'lazy';
+      img.alt = `Recuerdo compartido por ${photo.familia || 'Invitado'}`;
+      img.src = photo.thumbUrl;
+      img.addEventListener('error', async function onImgErr() {
+        img.removeEventListener('error', onImgErr);
+        try {
+          const r = await fetch(`${CONFIG.GS_SCRIPT_URL}?action=gallery_image&id=${encodeURIComponent(photo.id)}`);
+          const d = await r.json();
+          if (d && d.ok && d.dataUrl) {
+            img.src = d.dataUrl;
+            photo.fallbackDataUrl = d.dataUrl;
+          }
+        } catch (_) {}
+      });
+
+      inner.appendChild(img);
+      frame.appendChild(inner);
+
+      const meta = document.createElement('div');
+      meta.className = 'mayan-photo-meta';
+      meta.textContent = photo.familia || 'Invitado';
+      frame.appendChild(meta);
+
+      const openHandler = () => openLightbox(idx);
+      frame.addEventListener('click', openHandler);
+      frame.addEventListener('keydown', (e) => {
+        if (e.key === 'Enter' || e.key === ' ') {
+          e.preventDefault();
+          openHandler();
+        }
+      });
+
+      gridEl.appendChild(frame);
+    });
+  }
+
+  function openLightbox(idx) {
+    if (!galleryPhotos.length) return;
+    lightboxIndex = (idx + galleryPhotos.length) % galleryPhotos.length;
+    const photo = galleryPhotos[lightboxIndex];
+    const lb = document.getElementById('gallery-lightbox');
+    const lbImg = document.getElementById('lightbox-img');
+    const lbCap = document.getElementById('lightbox-caption');
+
+    if (lbImg) {
+      lbImg.src = photo.fallbackDataUrl || photo.fullUrl || photo.thumbUrl;
+    }
+    if (lbCap) {
+      const dateStr = photo.createdAt ? new Date(photo.createdAt).toLocaleDateString('es-MX', { dateStyle: 'medium' }) : '';
+      lbCap.textContent = `${photo.familia || 'Invitado'}${dateStr ? ' · ' + dateStr : ''}`;
+    }
+    if (lb) lb.classList.add('open');
+  }
+
+  function closeLightbox() {
+    const lb = document.getElementById('gallery-lightbox');
+    if (lb) lb.classList.remove('open');
+  }
+
+  (function initGalleryEvents() {
+    const fileInput   = document.getElementById('gallery-file-input');
+    const btnSelect   = document.getElementById('btn-gallery-select');
+    const btnUpload   = document.getElementById('btn-gallery-upload');
+    const btnRefresh  = document.getElementById('btn-gallery-refresh');
+    const dropzone    = document.getElementById('gallery-dropzone');
+    const lb          = document.getElementById('gallery-lightbox');
+    const lbClose     = document.getElementById('lightbox-close');
+    const lbPrev      = document.getElementById('lightbox-prev');
+    const lbNext      = document.getElementById('lightbox-next');
+
+    if (btnSelect && fileInput) btnSelect.addEventListener('click', () => fileInput.click());
+    if (fileInput) {
+      fileInput.addEventListener('change', (e) => {
+        handleGalleryFilesSelected(e.target.files);
+        e.target.value = '';
+      });
+    }
+    if (btnUpload) btnUpload.addEventListener('click', startGalleryUploadQueue);
+    if (btnRefresh) btnRefresh.addEventListener('click', loadGalleryFromDrive);
+
+    if (dropzone) {
+      dropzone.addEventListener('dragover', (e) => { e.preventDefault(); dropzone.classList.add('drag-over'); });
+      dropzone.addEventListener('dragleave', () => dropzone.classList.remove('drag-over'));
+      dropzone.addEventListener('drop', (e) => {
+        e.preventDefault();
+        dropzone.classList.remove('drag-over');
+        if (e.dataTransfer && e.dataTransfer.files) handleGalleryFilesSelected(e.dataTransfer.files);
+      });
+    }
+
+    if (lbClose) lbClose.addEventListener('click', closeLightbox);
+    if (lbPrev)  lbPrev.addEventListener('click', () => openLightbox(lightboxIndex - 1));
+    if (lbNext)  lbNext.addEventListener('click', () => openLightbox(lightboxIndex + 1));
+    if (lb) {
+      lb.addEventListener('click', (e) => { if (e.target === lb) closeLightbox(); });
+    }
+    document.addEventListener('keydown', (e) => {
+      if (!lb || !lb.classList.contains('open')) return;
+      if (e.key === 'Escape') closeLightbox();
+      if (e.key === 'ArrowLeft') openLightbox(lightboxIndex - 1);
+      if (e.key === 'ArrowRight') openLightbox(lightboxIndex + 1);
+    });
   })();
 
   /* ================================================================
