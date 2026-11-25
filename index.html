@@ -1930,6 +1930,32 @@
     text-overflow: ellipsis;
   }
 
+  .mayan-photo-delete {
+    position: absolute;
+    top: 14px;
+    right: 14px;
+    z-index: 4;
+    width: 26px;
+    height: 26px;
+    border-radius: 50%;
+    border: 1px solid rgba(223, 177, 91, 0.75);
+    background: rgba(5, 19, 15, 0.86);
+    color: var(--oro-brillo);
+    font-size: 13px;
+    line-height: 1;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: background 0.2s ease, transform 0.2s ease;
+  }
+  .mayan-photo-delete:hover {
+    background: rgba(160, 40, 30, 0.92);
+    border-color: #ffb4a2;
+    transform: scale(1.08);
+  }
+  .mayan-photo-delete:disabled { opacity: 0.5; cursor: wait; }
+
   /* Lightbox ceremonial */
   .gallery-lightbox {
     position: fixed;
@@ -2909,7 +2935,7 @@
     COUPLE_NAMES:     'Amalia e Israel',
     EVENT_DATE:       '2027-01-23T16:30:00',
     RSVP_DEADLINE:    '1 de Diciembre de 2026',
-    WHATSAPP_NUMBER:  '5217716995004',
+    WHATSAPP_NUMBER:  '5215534665631',
     // URL del Web App de Google Apps Script (despliegue RSVP y Galería)
     GS_SCRIPT_URL:            'https://script.google.com/macros/s/AKfycbw7hjLb4CjUkJxKLntCB66ryQpP3Kq_pmWuXhpINPMyaDIfcHjAYajJddSq2aDe0Bx0_g/exec',
     RSVP_TIMEOUT_MS:          20000,
@@ -4396,6 +4422,110 @@
     }
   }
 
+  function deletePhotoFromDrive(photo, btnEl) {
+    if (!photo || !photo.id) return;
+    if (!window.confirm('¿Deseas eliminar esta fotografía de la galería?')) return;
+
+    if (!window.location.origin || window.location.origin === 'null') {
+      showGalleryError('Abre la galería desde su enlace web publicado para eliminar fotografías.');
+      return;
+    }
+
+    clearGalleryError();
+    if (btnEl) { btnEl.disabled = true; btnEl.textContent = '…'; }
+
+    const requestId = 'del_' + Date.now() + '_' + Math.random().toString(36).slice(2, 10);
+    const iframe = document.createElement('iframe');
+    iframe.name = requestId;
+    iframe.style.display = 'none';
+    iframe.setAttribute('aria-hidden', 'true');
+
+    const form = document.createElement('form');
+    form.method = 'POST';
+    form.action = CONFIG.GS_SCRIPT_URL;
+    form.target = requestId;
+    form.style.display = 'none';
+
+    const fields = {
+      action: 'delete_photo',
+      requestId: requestId,
+      origin: window.location.origin,
+      fileId: photo.id
+    };
+    Object.keys(fields).forEach((k) => {
+      const input = document.createElement('input');
+      input.type = 'hidden';
+      input.name = k;
+      input.value = fields[k];
+      form.appendChild(input);
+    });
+
+    let settled = false;
+    let timerId = null;
+
+    function cleanup() {
+      window.removeEventListener('message', onMessage);
+      if (timerId) clearTimeout(timerId);
+      setTimeout(() => {
+        if (form.parentNode) form.parentNode.removeChild(form);
+        if (iframe.parentNode) iframe.parentNode.removeChild(iframe);
+      }, 120);
+    }
+
+    function isFromGalleryIframe(sourceWin) {
+      if (!sourceWin || !iframe.contentWindow) return false;
+      let cur = sourceWin;
+      for (let i = 0; i < 5; i++) {
+        if (cur === iframe.contentWindow) return true;
+        try {
+          if (!cur.parent || cur.parent === cur) break;
+          cur = cur.parent;
+        } catch (_) { break; }
+      }
+      return false;
+    }
+
+    async function onMessage(event) {
+      if (settled) return;
+      if (!isFromGalleryIframe(event.source)) return;
+      if (!/^https:\/\/([a-z0-9-]+\.)?(script\.google\.com|googleusercontent\.com)$/i.test(event.origin || '')) return;
+      const data = event.data;
+      if (!data || typeof data !== 'object' || data.type !== 'KAAM_NIKTE_GALLERY_DELETE_RESPONSE' || data.requestId !== requestId) return;
+
+      settled = true;
+      cleanup();
+      if (data.storage) updateGalleryStorageUI(data.storage);
+
+      if (data.ok) {
+        showToast('Fotografía eliminada de la galería.');
+        await loadGalleryFromDrive();
+      } else {
+        if (btnEl) { btnEl.disabled = false; btnEl.textContent = '✕'; }
+        showGalleryError(data.error || 'No fue posible eliminar la fotografía.');
+      }
+    }
+
+    window.addEventListener('message', onMessage);
+    timerId = setTimeout(() => {
+      if (settled) return;
+      settled = true;
+      cleanup();
+      if (btnEl) { btnEl.disabled = false; btnEl.textContent = '✕'; }
+      showGalleryError('Tiempo de espera agotado al eliminar la fotografía.');
+    }, CONFIG.RSVP_TIMEOUT_MS || 20000);
+
+    document.body.appendChild(iframe);
+    document.body.appendChild(form);
+    try {
+      form.submit();
+    } catch (_) {
+      settled = true;
+      cleanup();
+      if (btnEl) { btnEl.disabled = false; btnEl.textContent = '✕'; }
+      showGalleryError('No se pudo enviar la solicitud de eliminación.');
+    }
+  }
+
   function renderGalleryGrid() {
     const gridEl  = document.getElementById('gallery-grid');
     const emptyEl = document.getElementById('gallery-empty');
@@ -4437,10 +4567,17 @@
       inner.appendChild(img);
       frame.appendChild(inner);
 
-      const meta = document.createElement('div');
-      meta.className = 'mayan-photo-meta';
-      meta.textContent = photo.familia || 'Invitado';
-      frame.appendChild(meta);
+      const delBtn = document.createElement('button');
+      delBtn.type = 'button';
+      delBtn.className = 'mayan-photo-delete';
+      delBtn.textContent = '✕';
+      delBtn.title = 'Eliminar fotografía';
+      delBtn.setAttribute('aria-label', 'Eliminar fotografía');
+      delBtn.addEventListener('click', (e) => {
+        e.stopPropagation();
+        deletePhotoFromDrive(photo, delBtn);
+      });
+      frame.appendChild(delBtn);
 
       const openHandler = () => openLightbox(idx);
       frame.addEventListener('click', openHandler);
